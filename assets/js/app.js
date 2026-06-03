@@ -1,4 +1,5 @@
 import { initContraste } from './contrast.js';
+import { initFonte } from './font-size.js';
 import { initPageHandlers } from './ui.js';
 
 const PAGES = ['home', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
@@ -108,6 +109,7 @@ function paginaInicial() {
 
 export function initApp() {
   initContraste();
+  initFonte();
   initNav();
   ir(paginaInicial());
 }

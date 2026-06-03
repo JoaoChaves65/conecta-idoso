@@ -14,31 +14,42 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/contrast.css">
+  <link rel="stylesheet" href="assets/css/typography.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
-<body class="alto-contraste">
+<body class="alto-contraste letras-maiores">
 
   <nav>
     <div class="nav-inner">
-      <button type="button" class="logo" id="logo-btn" aria-label="Ir para o início">
-        <div class="logo-icon" aria-hidden="true">🤝</div>
-        <div>
-          <div class="logo-text">Conecta Idoso</div>
-          <div class="logo-slogan">Tecnologia, direitos e acolhimento</div>
+      <div class="nav-brand">
+        <button type="button" class="logo" id="logo-btn" aria-label="Ir para o início">
+          <div class="logo-icon" aria-hidden="true">🤝</div>
+          <div class="logo-info">
+            <div class="logo-text">Conecta Idoso</div>
+            <div class="logo-slogan">Tecnologia, direitos e acolhimento</div>
+          </div>
+        </button>
+
+        <div class="acessibilidade-bar nav-acessibilidade">
+          <div class="acessibilidade-inner">
+            <button type="button" class="btn-acess btn-fonte ativo" data-fonte-toggle aria-pressed="true" aria-label="Aumentar texto" title="Aumentar texto">
+              <span class="btn-acess-icone" aria-hidden="true">A+</span>
+              <span class="btn-acess-texto">Aumentar texto</span>
+            </button>
+            <label class="btn-acess toggle-contraste toggle-contraste--bar" title="Ativar ou desativar alto contraste">
+              <svg class="icone-contraste" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor"/>
+              </svg>
+              <span class="btn-acess-texto">Alto contraste</span>
+              <input type="checkbox" id="toggle-contraste" checked aria-label="Alto contraste">
+              <span class="toggle-switch" aria-hidden="true"></span>
+            </label>
+          </div>
         </div>
-      </button>
+      </div>
 
       <div class="nav-acoes">
-        <label class="toggle-contraste" title="Ativar ou desativar o modo de alto contraste">
-          <svg class="icone-contraste" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor"/>
-          </svg>
-          <span class="toggle-contraste-texto">Alto contraste</span>
-          <input type="checkbox" id="toggle-contraste" checked aria-label="Alto contraste">
-          <span class="toggle-switch" aria-hidden="true"></span>
-        </label>
-
         <ul class="nav-links">
           <li><a href="#home" data-nav="home">Início</a></li>
           <li><a href="#direitos" data-nav="direitos">Meus Direitos</a></li>
@@ -74,17 +85,6 @@
       <li><a href="#ajuda" data-nav="ajuda">Preciso de Ajuda</a></li>
       <li><a href="#emergencia" data-nav="emergencia" class="btn-emergencia-nav">🚨 Emergência</a></li>
     </ul>
-    <div class="nav-drawer-footer">
-      <label class="toggle-contraste toggle-contraste--drawer" title="Ativar ou desativar o modo de alto contraste">
-        <svg class="icone-contraste" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor"/>
-        </svg>
-        <span class="toggle-contraste-texto">Alto contraste</span>
-        <input type="checkbox" id="toggle-contraste-drawer" aria-label="Alto contraste">
-        <span class="toggle-switch" aria-hidden="true"></span>
-      </label>
-    </div>
   </div>
 
   <main id="main-content">

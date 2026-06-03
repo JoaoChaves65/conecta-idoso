@@ -14,11 +14,21 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 16px;
   min-height: var(--nav-height);
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  min-width: 0;
+  padding: 10px 0;
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
   min-width: 0;
 }
 
@@ -30,15 +40,30 @@ nav {
   border: none;
   background: none;
   text-align: left;
-  padding: 6px 0;
-  min-width: 0;
-  flex: 1 1 auto;
-  max-width: calc(100% - 120px);
+  padding: 0;
+  flex: 0 0 auto;
 }
 
-.logo > div:last-child {
-  min-width: 0;
-  overflow: hidden;
+.logo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.logo-text {
+  color: var(--branco);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.logo-slogan {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-xs);
+  font-weight: 400;
+  line-height: 1.3;
+  white-space: nowrap;
 }
 
 .logo-icon {
@@ -53,36 +78,14 @@ nav {
   flex-shrink: 0;
 }
 
-.logo-text {
-  color: var(--branco);
-  font-size: clamp(18px, 3vw, 22px);
-  font-weight: 800;
-  line-height: 1.1;
-}
-
-.logo-slogan {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 11px;
-  font-weight: 400;
-}
-
 .nav-acoes {
   display: flex;
   align-items: center;
   gap: 6px;
-  flex-shrink: 0;
-}
-
-.nav-drawer-footer {
-  display: none;
-  margin-top: 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.toggle-contraste--drawer {
-  width: 100%;
-  justify-content: space-between;
+  flex-shrink: 1;
+  min-width: 0;
+  margin-left: auto;
+  align-self: center;
 }
 
 .nav-links {
@@ -90,21 +93,23 @@ nav {
   gap: 4px;
   list-style: none;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .nav-links a {
   color: rgba(255, 255, 255, 0.90);
   text-decoration: none;
-  font-size: 15px;
+  font-size: var(--font-sm);
   font-weight: 600;
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 10px;
   transition: background 0.2s;
   cursor: pointer;
-  display: block;
   min-height: var(--tap-min);
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .nav-links a:hover,
@@ -218,7 +223,7 @@ nav {
 }
 
 .hero p {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: var(--font-base);
   opacity: 0.92;
   max-width: 580px;
   margin: 0 auto 2rem;
@@ -242,7 +247,7 @@ nav {
 .secao .subtitulo {
   color: var(--cinza-texto);
   margin-bottom: 2rem;
-  font-size: 1rem;
+  font-size: var(--font-base);
 }
 
 .sobre {
@@ -263,8 +268,8 @@ nav {
   max-width: 640px;
   margin: 0 auto;
   color: var(--cinza-texto);
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-  line-height: 1.7;
+  font-size: var(--font-base);
+  line-height: var(--line-body);
 }
 
 .header-pagina {
@@ -303,7 +308,8 @@ nav {
 
 .header-pagina p {
   opacity: 0.88;
-  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  font-size: var(--font-base);
+  margin-bottom: 0.5rem;
 }
 
 .header-pagina .badge {
@@ -311,7 +317,7 @@ nav {
   background: rgba(255, 255, 255, 0.22);
   padding: 4px 16px;
   border-radius: 20px;
-  font-size: 0.85rem;
+  font-size: var(--font-sm);
   font-weight: 700;
   margin-bottom: 0.8rem;
 }
@@ -321,7 +327,7 @@ footer {
   color: rgba(255, 255, 255, 0.75);
   text-align: center;
   padding: clamp(1.5rem, 4vw, 2rem);
-  font-size: 0.92rem;
+  font-size: var(--font-sm);
   margin-top: 3rem;
 }
 

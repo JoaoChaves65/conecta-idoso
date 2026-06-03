@@ -23,10 +23,15 @@
   --sombra: 0 4px 20px rgba(0, 0, 0, 0.10);
   --nav-height: 72px;
   --page-gutter: clamp(1rem, 4vw, 2rem);
-  --font-base: clamp(16px, 2.5vw, 18px);
-  --font-hero: clamp(1.6rem, 5vw, 2.6rem);
-  --font-h1: clamp(1.5rem, 4vw, 2rem);
-  --font-h2: clamp(1.35rem, 3.5vw, 1.9rem);
   --tap-min: 44px;
   --content-max: 960px;
+
+  /* Tipografia — mínimos pensados para idosos (60+) */
+  --font-base: 18px;
+  --font-sm: 16px;
+  --font-xs: 16px;
+  --line-body: 1.65;
+  --font-hero: clamp(1.75rem, 4vw, 2.6rem);
+  --font-h1: clamp(1.5rem, 3.5vw, 2rem);
+  --font-h2: clamp(1.35rem, 3vw, 1.9rem);
 }

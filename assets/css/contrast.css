@@ -2,7 +2,6 @@
 body.alto-contraste {
   background: #000 !important;
   color: #fff !important;
-  font-size: 19px;
 }
 
 body.alto-contraste nav {
@@ -49,9 +48,9 @@ body.alto-contraste .nav-toggle span {
   background: #fff !important;
 }
 
-body.alto-contraste .toggle-contraste {
-  background: #000 !important;
-  border: 3px solid #ff0 !important;
+body.alto-contraste .toggle-contraste--bar {
+  background: rgba(0, 0, 0, 0.35) !important;
+  border: 2px solid rgba(255, 255, 255, 0.7) !important;
 }
 
 body.alto-contraste .toggle-contraste-texto,
@@ -229,13 +228,4 @@ body.alto-contraste .btn-voltar {
 
 body.alto-contraste .nav-overlay {
   background: rgba(0, 0, 0, 0.85) !important;
-}
-
-body.alto-contraste .nav-drawer-footer {
-  border-top-color: #ff0 !important;
-}
-
-body.alto-contraste .toggle-contraste--drawer {
-  background: #000 !important;
-  border: 3px solid #ff0 !important;
 }
