@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conecta Idoso</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #2E8B57;
+    --verde-claro: #4CAF76;
+    --verde-fundo: #E8F5EE;
+    --azul: #1565C0;
+    --azul-claro: #2196F3;
+    --azul-fundo: #E3F2FD;
+    --laranja: #E65100;
+    --laranja-fundo: #FFF3E0;
+    --cinza: #F5F5F5;
+    --cinza-texto: #555;
+    --preto: #222;
+    --branco: #fff;
+    --radius: 16px;
+    --sombra: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    color: var(--preto);
+    background: #f0f4f8;
+    min-height: 100vh;
+  }
+
+  /* NAVEGAÇÃO */
+  nav {
+    background: var(--verde);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    min-height: 72px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--branco);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+  .logo-text {
+    color: var(--branco);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .logo-slogan {
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.90);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: background 0.2s;
+    cursor: pointer;
+    display: block;
+  }
+  .nav-links a:hover, .nav-links a.ativo {
+    background: rgba(255,255,255,0.20);
+    color: #fff;
+  }
+  .btn-emergencia-nav {
+    background: #c62828 !important;
+    color: #fff !important;
+    border-radius: 10px;
+    padding: 8px 18px !important;
+    font-weight: 800 !important;
+    font-size: 15px !important;
+    animation: pulsar 2s infinite;
+  }
+  @keyframes pulsar {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.82; }
+  }
+
+  /* PÁGINAS */
+  .pagina { display: none; }
+  .pagina.ativa { display: block; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--verde) 0%, #1B5E20 100%);
+    color: #fff;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 1.25rem;
+    opacity: 0.92;
+    max-width: 580px;
+    margin: 0 auto 2rem;
+  }
+
+  /* BOTÕES DE ACESSO RÁPIDO */
+  .acesso-rapido {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .btn-rapido {
+    background: var(--branco);
+    border: none;
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: var(--sombra);
+    transition: transform 0.18s, box-shadow 0.18s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .btn-rapido:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+  }
+  .btn-rapido .icone { font-size: 3rem; margin-bottom: 1rem; }
+  .btn-rapido .titulo { font-size: 1.15rem; font-weight: 800; color: var(--preto); margin-bottom: 0.4rem; }
+  .btn-rapido .desc { font-size: 0.9rem; color: var(--cinza-texto); }
+  .btn-rapido.verde { border-top: 5px solid var(--verde); }
+  .btn-rapido.azul { border-top: 5px solid var(--azul); }
+  .btn-rapido.laranja { border-top: 5px solid var(--laranja); }
+  .btn-rapido.roxo { border-top: 5px solid #7B1FA2; }
+
+  /* EMERGÊNCIA */
+  .btn-emergencia-grande {
+    display: block;
+    background: #c62828;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 900;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    box-shadow: 0 4px 20px rgba(198,40,40,0.40);
+    animation: pulsar 2s infinite;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* SEÇÃO SOBRE */
+  .sobre {
+    background: var(--branco);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  .sobre h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1rem; color: var(--verde); }
+  .sobre p { max-width: 640px; margin: 0 auto; color: var(--cinza-texto); font-size: 1.05rem; line-height: 1.7; }
+
+  /* CARDS GENÉRICOS */
+  .secao {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+  }
+  .secao h2 {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--verde);
+    margin-bottom: 0.5rem;
+  }
+  .secao .subtitulo {
+    color: var(--cinza-texto);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 1.8rem 1.5rem;
+    box-shadow: var(--sombra);
+    border-left: 6px solid var(--verde);
+  }
+  .card.azul { border-left-color: var(--azul); }
+  .card.laranja { border-left-color: var(--laranja); }
+  .card.roxo { border-left-color: #7B1FA2; }
+  .card .card-icone { font-size: 2.4rem; margin-bottom: 0.8rem; }
+  .card h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .card p { font-size: 0.95rem; color: var(--cinza-texto); line-height: 1.6; }
+  .card .tag {
+    display: inline-block;
+    margin-top: 0.8rem;
+    background: var(--verde-fundo);
+    color: var(--verde);
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .card.azul .tag { background: var(--azul-fundo); color: var(--azul); }
+  .card.laranja .tag { background: var(--laranja-fundo); color: var(--laranja); }
+  .card.roxo .tag { background: #F3E5F5; color: #7B1FA2; }
+
+  /* PÁGINA DIREITOS */
+  .direito-item {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.8rem;
+    margin-bottom: 1.2rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    border-left: 6px solid var(--azul);
+  }
+  .direito-item .icone { font-size: 2.2rem; flex-shrink: 0; }
+  .direito-item h3 { font-size: 1.1rem; font-weight: 800; color: var(--azul); margin-bottom: 0.4rem; }
+  .direito-item p { font-size: 0.95rem; color: var(--cinza-texto); line-height: 1.6; }
+
+  /* TUTORIAIS */
+  .tutorial-card {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.18s;
+    border-top: 5px solid var(--azul-claro);
+  }
+  .tutorial-card:hover { transform: translateY(-3px); }
+  .tutorial-card .play { font-size: 3rem; margin-bottom: 0.8rem; }
+  .tutorial-card h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .tutorial-card p { font-size: 0.88rem; color: var(--cinza-texto); }
+  .nivel {
+    display: inline-block;
+    margin-top: 0.6rem;
+    background: var(--azul-fundo);
+    color: var(--azul);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 20px;
+  }
+
+  /* MAPA PLACEHOLDER */
+  .mapa-placeholder {
+    background: var(--azul-fundo);
+    border-radius: var(--radius);
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--azul-claro);
+    margin: 1.5rem 0;
+    color: var(--azul);
+  }
+  .mapa-placeholder .icone-mapa { font-size: 4rem; margin-bottom: 0.8rem; }
+  .mapa-placeholder h3 { font-size: 1.3rem; font-weight: 800; }
+  .mapa-placeholder p { font-size: 0.95rem; opacity: 0.75; }
+
+  .cep-box {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .cep-box input {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.75rem 1rem;
+    font-size: 1.1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+  }
+  .cep-box input:focus { border-color: var(--azul-claro); }
+  .cep-box button {
+    background: var(--azul);
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+  }
+
+  /* SERVIÇOS CHIPS */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 1rem 0;
+  }
+  .chip {
+    background: var(--branco);
+    border: 2px solid var(--azul-claro);
+    color: var(--azul);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Nunito', sans-serif;
+  }
+  .chip.ativo, .chip:hover {
+    background: var(--azul);
+    color: #fff;
+    border-color: var(--azul);
+  }
+
+  /* VOLUNTÁRIOS */
+  .form-voluntario {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--sombra);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .form-voluntario h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem; color: var(--verde); }
+  .campo {
+    margin-bottom: 1rem;
+  }
+  .campo label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    color: var(--cinza-texto);
+  }
+  .campo input, .campo select, .campo textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    color: var(--preto);
+  }
+  .campo input:focus, .campo select:focus { border-color: var(--verde); }
+  .btn-enviar {
+    background: var(--verde);
+    color: #fff;
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1.1rem;
+    font-weight: 800;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 0.5rem;
+    transition: background 0.18s;
+  }
+  .btn-enviar:hover { background: var(--verde-claro); }
+
+  /* HEADER INTERNO */
+  .header-pagina {
+    background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+    color: #fff;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+  }
+  .header-pagina.verde-grad {
+    background: linear-gradient(135deg, var(--verde) 0%, #1B5E20 100%);
+  }
+  .header-pagina.roxo-grad {
+    background: linear-gradient(135deg, #6A1B9A 0%, #4A148C 100%);
+  }
+  .header-pagina.laranja-grad {
+    background: linear-gradient(135deg, #E65100 0%, #BF360C 100%);
+  }
+  .header-pagina h1 { font-size: 2rem; font-weight: 900; margin-bottom: 0.4rem; }
+  .header-pagina p { opacity: 0.88; font-size: 1.05rem; }
+  .header-pagina .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.22);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--preto);
+    color: rgba(255,255,255,0.75);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.92rem;
+    margin-top: 3rem;
+  }
+  footer strong { color: #fff; }
+
+  /* ALERTA */
+  .alerta {
+    background: #FFEBEE;
+    border-left: 6px solid #c62828;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.2rem 0;
+    font-size: 1rem;
+    color: #b71c1c;
+    font-weight: 600;
+  }
+
+  /* DENUNCIA */
+  .denuncia-card {
+    background: var(--branco);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--sombra);
+    border-left: 6px solid #c62828;
+    margin-bottom: 1rem;
+  }
+  .denuncia-card h3 { font-size: 1.05rem; font-weight: 800; color: #c62828; margin-bottom: 0.4rem; }
+  .denuncia-card p { font-size: 0.92rem; color: var(--cinza-texto); }
+  .denuncia-card .contato { font-size: 1.1rem; font-weight: 800; color: var(--preto); margin-top: 0.5rem; }
+
+  /* ALTO CONTRASTE — toggle na navegação */
+  .nav-acoes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .toggle-contraste {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.10);
+    transition: background 0.2s;
+  }
+  .toggle-contraste:hover {
+    background: rgba(255,255,255,0.20);
+  }
+  .toggle-contraste:focus-within {
+    outline: 3px solid #ff0;
+    outline-offset: 2px;
+  }
+  .icone-contraste {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: #fff;
+  }
+  .toggle-contraste-texto {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .toggle-contraste input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+  .toggle-switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 13px;
+    border: 2px solid rgba(255,255,255,0.55);
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  }
+  .toggle-contraste input:checked + .toggle-switch {
+    background: #fff;
+    border-color: #fff;
+  }
+  .toggle-contraste input:checked + .toggle-switch::after {
+    transform: translateX(22px);
+    background: var(--verde);
+  }
+
+  /* ALTO CONTRASTE — ativo por padrão para idosos */
+  body.alto-contraste {
+    background: #000 !important;
+    color: #fff !important;
+    font-size: 19px;
+  }
+  body.alto-contraste nav {
+    background: #000 !important;
+    border-bottom: 4px solid #ff0;
+    box-shadow: none;
+  }
+  body.alto-contraste .logo-icon {
+    background: #000;
+    border: 3px solid #ff0;
+  }
+  body.alto-contraste .logo-text,
+  body.alto-contraste .logo-slogan {
+    color: #fff !important;
+  }
+  body.alto-contraste .nav-links a {
+    color: #fff !important;
+    border: 2px solid transparent;
+  }
+  body.alto-contraste .nav-links a:hover,
+  body.alto-contraste .nav-links a.ativo {
+    background: #ff0 !important;
+    color: #000 !important;
+    border-color: #fff;
+  }
+  body.alto-contraste .btn-emergencia-nav {
+    background: #f00 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+  }
+  body.alto-contraste .toggle-contraste {
+    background: #000 !important;
+    border: 3px solid #ff0 !important;
+  }
+  body.alto-contraste .toggle-contraste-texto,
+  body.alto-contraste .icone-contraste {
+    color: #fff !important;
+  }
+  body.alto-contraste .toggle-switch {
+    background: #333 !important;
+    border-color: #fff !important;
+  }
+  body.alto-contraste .toggle-contraste input:checked + .toggle-switch {
+    background: #ff0 !important;
+    border-color: #fff !important;
+  }
+  body.alto-contraste .toggle-contraste input:checked + .toggle-switch::after {
+    background: #000 !important;
+  }
+  body.alto-contraste .hero,
+  body.alto-contraste .header-pagina,
+  body.alto-contraste .header-pagina.verde-grad,
+  body.alto-contraste .header-pagina.roxo-grad,
+  body.alto-contraste .header-pagina.laranja-grad {
+    background: #000 !important;
+    border-bottom: 4px solid #ff0;
+    color: #fff !important;
+  }
+  body.alto-contraste .hero p,
+  body.alto-contraste .header-pagina p,
+  body.alto-contraste .header-pagina .badge {
+    opacity: 1 !important;
+    color: #fff !important;
+  }
+  body.alto-contraste .header-pagina .badge {
+    background: #ff0 !important;
+    color: #000 !important;
+    border: 2px solid #fff;
+  }
+  body.alto-contraste .btn-rapido,
+  body.alto-contraste .card,
+  body.alto-contraste .direito-item,
+  body.alto-contraste .tutorial-card,
+  body.alto-contraste .denuncia-card,
+  body.alto-contraste .form-voluntario,
+  body.alto-contraste .cep-box,
+  body.alto-contraste .sobre {
+    background: #000 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+    box-shadow: none !important;
+    border-left: 6px solid #ff0 !important;
+    border-top: 3px solid #fff !important;
+  }
+  body.alto-contraste .btn-rapido .titulo,
+  body.alto-contraste .btn-rapido .desc,
+  body.alto-contraste .card h3,
+  body.alto-contraste .card p,
+  body.alto-contraste .direito-item h3,
+  body.alto-contraste .direito-item p,
+  body.alto-contraste .tutorial-card h3,
+  body.alto-contraste .tutorial-card p,
+  body.alto-contraste .denuncia-card h3,
+  body.alto-contraste .denuncia-card p,
+  body.alto-contraste .denuncia-card .contato,
+  body.alto-contraste .sobre p {
+    color: #fff !important;
+  }
+  body.alto-contraste .secao h2,
+  body.alto-contraste .sobre h2 {
+    color: #ff0 !important;
+  }
+  body.alto-contraste .secao .subtitulo,
+  body.alto-contraste .campo label {
+    color: #fff !important;
+  }
+  body.alto-contraste .tag,
+  body.alto-contraste .nivel,
+  body.alto-contraste .chip {
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 2px solid #ff0 !important;
+  }
+  body.alto-contraste .chip.ativo,
+  body.alto-contraste .chip:hover {
+    background: #ff0 !important;
+    color: #000 !important;
+  }
+  body.alto-contraste .btn-enviar,
+  body.alto-contraste .cep-box button {
+    background: #ff0 !important;
+    color: #000 !important;
+    border: 3px solid #fff !important;
+    font-weight: 900 !important;
+  }
+  body.alto-contraste .btn-emergencia-grande {
+    background: #f00 !important;
+    color: #fff !important;
+    border: 4px solid #fff !important;
+    box-shadow: none !important;
+  }
+  body.alto-contraste .alerta {
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 3px solid #f00 !important;
+    border-left: 8px solid #f00 !important;
+  }
+  body.alto-contraste .mapa-placeholder {
+    background: #000 !important;
+    color: #ff0 !important;
+    border: 3px dashed #ff0 !important;
+  }
+  body.alto-contraste .campo input,
+  body.alto-contraste .campo select,
+  body.alto-contraste .campo textarea,
+  body.alto-contraste .cep-box input {
+    background: #000 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+  }
+  body.alto-contraste .campo input:focus,
+  body.alto-contraste .campo select:focus,
+  body.alto-contraste .cep-box input:focus {
+    border-color: #ff0 !important;
+    outline: 2px solid #ff0;
+  }
+  body.alto-contraste footer {
+    background: #000 !important;
+    color: #fff !important;
+    border-top: 4px solid #ff0;
+  }
+  body.alto-contraste footer strong {
+    color: #ff0 !important;
+  }
+  body.alto-contraste .form-voluntario h3 {
+    color: #ff0 !important;
+  }
+  body.alto-contraste div[style*="background"] {
+    background: #000 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+  }
+  body.alto-contraste div[style*="background"] h3,
+  body.alto-contraste div[style*="background"] p,
+  body.alto-contraste div[style*="background"] strong {
+    color: #fff !important;
+  }
+  body.alto-contraste a[style*="background"] > div,
+  body.alto-contraste a[style*="display:block"] > div {
+    border: 3px solid #fff !important;
+    box-shadow: none !important;
+  }
+  body.alto-contraste a[href^="tel:"] > div {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  body.alto-contraste #page-emergencia > div:first-child {
+    background: #f00 !important;
+    border-bottom: 4px solid #fff !important;
+  }
+  body.alto-contraste #page-emergencia a[href="tel:192"] > div { background: #f00 !important; }
+  body.alto-contraste #page-emergencia a[href="tel:190"] > div { background: #000 !important; border-color: #ff0 !important; }
+  body.alto-contraste #page-emergencia a[href="tel:193"] > div { background: #000 !important; border-color: #ff9900 !important; }
+  body.alto-contraste #page-emergencia a[href="tel:100"] > div { background: #000 !important; border-color: #ff0 !important; }
+  body.alto-contraste button[style*="background:none"] {
+    background: #000 !important;
+    color: #fff !important;
+    border: 3px solid #fff !important;
+  }
+
+  /* RESPONSIVO */
+  @media (max-width: 700px) {
+    nav { padding: 0 1rem; flex-wrap: wrap; gap: 8px; min-height: auto; padding: 0.7rem 1rem; }
+    .nav-links { flex-wrap: wrap; gap: 4px; }
+    .nav-links a { font-size: 13px; padding: 6px 10px; }
+    .nav-acoes { width: 100%; justify-content: center; order: 3; }
+    .toggle-contraste-texto { font-size: 13px; }
+    .toggle-contraste { padding: 6px 10px; gap: 8px; }
+    .hero h1 { font-size: 1.8rem; }
+    .acesso-rapido { padding: 1.5rem 1rem; }
+    .secao { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body class="alto-contraste">
+
+<!-- NAVEGAÇÃO -->
+<nav>
+  <div class="logo" onclick="ir('home')">
+    <div class="logo-icon">🤝</div>
+    <div>
+      <div class="logo-text">Conecta Idoso</div>
+      <div class="logo-slogan">Tecnologia, direitos e acolhimento</div>
+    </div>
+  </div>
+  <div class="nav-acoes">
+    <label class="toggle-contraste" title="Ativar ou desativar o modo de alto contraste">
+      <svg class="icone-contraste" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 3a9 9 0 0 1 0 18V3z" fill="currentColor"/>
+      </svg>
+      <span class="toggle-contraste-texto">Alto contraste</span>
+      <input type="checkbox" id="toggle-contraste" checked aria-label="Alto contraste">
+      <span class="toggle-switch" aria-hidden="true"></span>
+    </label>
+    <ul class="nav-links">
+      <li><a onclick="ir('home')" id="nav-home">Início</a></li>
+      <li><a onclick="ir('direitos')" id="nav-direitos">Meus Direitos</a></li>
+      <li><a onclick="ir('digital')" id="nav-digital">Inclusão Digital</a></li>
+      <li><a onclick="ir('assistiva')" id="nav-assistiva">Tecnologia Assistiva</a></li>
+      <li><a onclick="ir('servicos')" id="nav-servicos">Serviços</a></li>
+      <li><a onclick="ir('ajuda')" id="nav-ajuda">Preciso de Ajuda</a></li>
+      <li><a onclick="ir('emergencia')" class="btn-emergencia-nav" id="nav-emergencia">🚨 Emergência</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: HOME -->
+<!-- ============================================================ -->
+<div id="page-home" class="pagina ativa">
+  <div class="hero">
+    <h1>🤝 Conecta Idoso</h1>
+    <p>Tecnologia, direitos e acolhimento ao alcance de todos. Aqui você encontra tudo que precisa, de forma simples e com letras grandes.</p>
+  </div>
+
+  <div class="acesso-rapido">
+    <button class="btn-rapido verde" onclick="ir('ajuda')">
+      <div class="icone">🆘</div>
+      <div class="titulo">Preciso de Ajuda</div>
+      <div class="desc">Denúncias, orientação social e apoio</div>
+    </button>
+    <button class="btn-rapido azul" onclick="ir('direitos')">
+      <div class="icone">⚖️</div>
+      <div class="titulo">Meus Direitos</div>
+      <div class="desc">Estatuto, BPC, transporte e saúde</div>
+    </button>
+    <button class="btn-rapido laranja" onclick="ir('digital')">
+      <div class="icone">📱</div>
+      <div class="titulo">Aprender Tecnologia</div>
+      <div class="desc">Tutoriais em vídeo fáceis de entender</div>
+    </button>
+    <button class="btn-rapido roxo" onclick="ir('servicos')">
+      <div class="icone">🗺️</div>
+      <div class="titulo">Serviços Próximos</div>
+      <div class="desc">Hospitais, CRAS, farmácias e mais</div>
+    </button>
+    <button class="btn-rapido" style="border-top:5px solid #2196F3" onclick="ir('assistiva')">
+      <div class="icone">⌚</div>
+      <div class="titulo">Tecnologia Assistiva</div>
+      <div class="desc">Aparelhos e apps que facilitam a vida</div>
+    </button>
+    <button class="btn-rapido" style="border-top:5px solid #43A047" onclick="ir('voluntarios')">
+      <div class="icone">🤗</div>
+      <div class="titulo">Falar com Voluntário</div>
+      <div class="desc">Rede de jovens e ONGs que ajudam</div>
+    </button>
+  </div>
+
+  <div style="text-align:center; padding: 0 2rem 1rem;">
+    <button class="btn-emergencia-grande" onclick="ir('emergencia')">
+      🚨 PRECISO DE AJUDA AGORA
+    </button>
+  </div>
+
+  <div class="sobre">
+    <h2>Quem Somos</h2>
+    <p>O <strong>Conecta Idoso</strong> é um projeto integrador criado para apoiar idosos e suas famílias. Nosso objetivo é facilitar o acesso à informação, aos direitos e aos serviços públicos de forma simples, acessível e humana. Acreditamos que todo idoso merece dignidade, amparo e conexão com o mundo digital.</p>
+  </div>
+
+  <footer>
+    <strong>Conecta Idoso</strong> — Projeto Integrador 2026<br>
+    "Tecnologia, direitos e acolhimento para uma vida melhor."
+  </footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: DIREITOS -->
+<!-- ============================================================ -->
+<div id="page-direitos" class="pagina">
+  <div class="header-pagina">
+    <div class="badge">⚖️ Seus Direitos</div>
+    <h1>Direitos do Idoso</h1>
+    <p>O que a lei garante para você. Informação clara e simples.</p>
+  </div>
+
+  <div class="secao">
+    <div class="alerta">
+      📌 Lembrete: Você tem direito a atendimento prioritário em bancos, hospitais, farmácias e repartições públicas!
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">📜</div>
+      <div>
+        <h3>Estatuto do Idoso (Lei 10.741/2003)</h3>
+        <p>A lei que protege todos os brasileiros com 60 anos ou mais. Garante saúde, educação, habitação, transporte, lazer e segurança. Quem desrespeitar pode ser punido com multa e prisão.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">💰</div>
+      <div>
+        <h3>BPC/LOAS — Benefício de Prestação Continuada</h3>
+        <p>Um salário mínimo por mês para idosos com 65 anos ou mais que não recebem aposentadoria e que a família tem renda baixa (até 1/4 do salário mínimo por pessoa). Não precisa ter contribuído para o INSS. Acesse pelo CRAS ou gov.br.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">🚌</div>
+      <div>
+        <h3>Transporte Gratuito</h3>
+        <p>Idosos com 65 anos ou mais têm direito a transporte público gratuito (ônibus, metrô, trem). Basta apresentar documento de identidade. Em alguns municípios, a gratuidade começa aos 60 anos.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">🏥</div>
+      <div>
+        <h3>Prioridade no SUS</h3>
+        <p>Atendimento preferencial nas UBSs, hospitais e postos de saúde. Direito a acompanhante nas consultas e internações. Medicamentos com desconto de até 100% na Farmácia Popular.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">🏠</div>
+      <div>
+        <h3>Moradia e Habitação</h3>
+        <p>Prioridade em programas habitacionais do governo. O idoso não pode ser despejado sem uma alternativa de moradia digna. Aluguéis com abuso podem ser denunciados.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">🛡️</div>
+      <div>
+        <h3>Proteção Contra Violência</h3>
+        <p>Qualquer tipo de violência — física, psicológica, financeira ou negligência — contra o idoso é crime. Denuncie pelo Disque 100 (gratuito, 24 horas) ou procure o CREAS.</p>
+      </div>
+    </div>
+
+    <div class="direito-item">
+      <div class="icone">🎓</div>
+      <div>
+        <h3>Educação e Cultura</h3>
+        <p>Meia-entrada em eventos culturais, esportivos e de lazer. Prioridade de matrícula em cursos e programas de educação. Acesso gratuito a museus públicos.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 2rem;">
+      <button class="btn-enviar" style="max-width:400px; display:inline-block;" onclick="ir('ajuda')">
+        🤔 Tenho dúvidas sobre meus direitos — Pedir Orientação
+      </button>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: INCLUSÃO DIGITAL -->
+<!-- ============================================================ -->
+<div id="page-digital" class="pagina">
+  <div class="header-pagina">
+    <div class="badge">📱 Aprenda sem medo</div>
+    <h1>Inclusão Digital</h1>
+    <p>Tutoriais simples e no seu ritmo. Ninguém nasce sabendo!</p>
+  </div>
+
+  <div class="secao">
+    <h2>Tutoriais em Vídeo</h2>
+    <p class="subtitulo">Clique em qualquer tutorial para aprender. Com calma, sem pressa.</p>
+    <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px,1fr));">
+      <div class="tutorial-card">
+        <div class="play">💬</div>
+        <h3>Como usar o WhatsApp</h3>
+        <p>Enviar mensagens, fotos e fazer ligações pelo celular</p>
+        <span class="nivel">Nível: Iniciante</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">💸</div>
+        <h3>Como fazer um Pix</h3>
+        <p>Transferir dinheiro com segurança pelo celular</p>
+        <span class="nivel">Nível: Iniciante</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">📹</div>
+        <h3>Chamada de Vídeo</h3>
+        <p>Ver a família de pertinho, mesmo de longe</p>
+        <span class="nivel">Nível: Fácil</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">🏥</div>
+        <h3>Marcar Consulta Online</h3>
+        <p>Agendar consultas pelo celular sem sair de casa</p>
+        <span class="nivel">Nível: Fácil</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">🔒</div>
+        <h3>Como Evitar Golpes</h3>
+        <p>Reconhecer fraudes e proteger seu dinheiro e dados</p>
+        <span class="nivel">Nível: Importante!</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">📷</div>
+        <h3>Tirar e Enviar Fotos</h3>
+        <p>Usar a câmera e compartilhar memórias com a família</p>
+        <span class="nivel">Nível: Iniciante</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">🌐</div>
+        <h3>Navegar na Internet</h3>
+        <p>Pesquisar receitas, notícias e informações com segurança</p>
+        <span class="nivel">Nível: Fácil</span>
+      </div>
+      <div class="tutorial-card">
+        <div class="play">📧</div>
+        <h3>Usar o E-mail</h3>
+        <p>Enviar e receber mensagens importantes de qualquer lugar</p>
+        <span class="nivel">Nível: Intermediário</span>
+      </div>
+    </div>
+
+    <div style="background:var(--azul-fundo); border-radius: var(--radius); padding: 1.5rem; margin-top:2rem; border-left: 6px solid var(--azul-claro);">
+      <h3 style="color:var(--azul); margin-bottom:0.5rem;">📚 Cartilhas para Download</h3>
+      <p style="color:var(--cinza-texto); font-size:0.95rem;">Também disponibilizamos cartilhas ilustradas e impressas. Peça ao voluntário mais próximo ou no CRAS da sua cidade.</p>
+    </div>
+
+    <div style="background: #F3E5F5; border-radius: var(--radius); padding: 1.5rem; margin-top:1.2rem; border-left: 6px solid #7B1FA2;">
+      <h3 style="color:#7B1FA2; margin-bottom:0.5rem;">❓ Perguntas Frequentes</h3>
+      <p style="color:var(--cinza-texto); font-size:0.95rem;"><strong>"Meu celular é muito antigo, funciona?"</strong> — A maioria dos tutoriais funciona em celulares simples. Se precisar de ajuda, fale com um voluntário.<br><br>
+      <strong>"E se eu errar?"</strong> — Não tem problema! O celular não quebra com erro. Pode tentar de novo quantas vezes quiser.</p>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: TECNOLOGIA ASSISTIVA -->
+<!-- ============================================================ -->
+<div id="page-assistiva" class="pagina">
+  <div class="header-pagina" style="background: linear-gradient(135deg, #1565C0 0%, #283593 100%);">
+    <div class="badge">⌚ Facilitar o dia a dia</div>
+    <h1>Tecnologia Assistiva</h1>
+    <p>Aparelhos e aplicativos que cuidam de você e dão mais segurança</p>
+  </div>
+
+  <div class="secao">
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-icone">⌚</div>
+        <h3>Relógio Inteligente (Smartwatch)</h3>
+        <p>Monitora batimentos cardíacos, pressão arterial e nível de oxigênio no sangue. Envia alertas para os familiares se detectar algo anormal. Alguns modelos ligam automaticamente para o SAMU.</p>
+        <span class="tag">Segurança</span>
+      </div>
+      <div class="card azul">
+        <div class="card-icone">📟</div>
+        <h3>Sensor de Queda</h3>
+        <p>Detecta automaticamente se o idoso caiu e envia alerta para os familiares. Pode ser usado como pulseira ou colar. Alguns modelos têm botão de pânico para acionar ajuda.</p>
+        <span class="tag">Emergência</span>
+      </div>
+      <div class="card laranja">
+        <div class="card-icone">💊</div>
+        <h3>Aplicativo de Lembrete de Remédios</h3>
+        <p>Avisa na hora certa de tomar cada medicamento. Faz barulho e vibra para não esquecer. Gratuito no celular. Pode ser configurado pelo filho ou neto.</p>
+        <span class="tag">Saúde</span>
+      </div>
+      <div class="card roxo">
+        <div class="card-icone">🔊</div>
+        <h3>Leitor de Voz (TalkBack)</h3>
+        <p>Lê em voz alta o que aparece na tela do celular. Ideal para quem tem dificuldade de enxergar. Já vem instalado nos celulares Android. Ative em Configurações > Acessibilidade.</p>
+        <span class="tag">Acessibilidade</span>
+      </div>
+      <div class="card" style="border-left-color:#00838F">
+        <div class="card-icone">🔍</div>
+        <h3>Lupa Digital</h3>
+        <p>Aumenta textos e imagens no celular para facilitar a leitura. Também disponível como aplicativo gratuito. Basta apontar a câmera para o que quer ler.</p>
+        <span class="tag" style="background:#E0F7FA;color:#00838F">Visão</span>
+      </div>
+      <div class="card" style="border-left-color:#2E7D32">
+        <div class="card-icone">🎙️</div>
+        <h3>Assistente de Voz</h3>
+        <p>Google Assistente ou Alexa: basta falar para fazer ligações, buscar informações, ouvir música ou controlar aparelhos da casa. Não precisa digitar nada.</p>
+        <span class="tag" style="background:#E8F5E9;color:#2E7D32">Facilidade</span>
+      </div>
+      <div class="card" style="border-left-color:#D84315">
+        <div class="card-icone">📱</div>
+        <h3>Modo Simples do Celular</h3>
+        <p>Deixa a tela com ícones maiores, poucos botões e interface simplificada. Disponível em vários modelos de celular. Perfeito para quem está começando a usar tecnologia.</p>
+        <span class="tag" style="background:#FBE9E7;color:#D84315">Iniciante</span>
+      </div>
+      <div class="card" style="border-left-color:#6A1B9A">
+        <div class="card-icone">🩺</div>
+        <h3>Consulta Médica Online (Telemedicina)</h3>
+        <p>Falar com um médico pelo celular ou computador, sem sair de casa. Ótimo para consultas de rotina, tirar dúvidas e receber receitas digitais pelo SUS e planos de saúde.</p>
+        <span class="tag" style="background:#F3E5F5;color:#6A1B9A">Saúde</span>
+      </div>
+    </div>
+
+    <div style="background:#E8F5EE; border-radius: var(--radius); padding: 1.5rem; margin-top: 2rem; border-left: 6px solid var(--verde);">
+      <h3 style="color:var(--verde); margin-bottom:0.5rem;">💡 Dica dos Voluntários</h3>
+      <p style="color:var(--cinza-texto); font-size:0.95rem;">Não sabe como configurar algum desses aparelhos? Os jovens voluntários do Conecta Idoso podem ajudar! Acesse "Falar com Voluntário" e solicite uma visita.</p>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: SERVIÇOS -->
+<!-- ============================================================ -->
+<div id="page-servicos" class="pagina">
+  <div class="header-pagina" style="background: linear-gradient(135deg, #00695C 0%, #004D40 100%);">
+    <div class="badge">🗺️ Perto de você</div>
+    <h1>Serviços Próximos</h1>
+    <p>Digite seu CEP e encontre os serviços mais próximos</p>
+  </div>
+
+  <div class="secao">
+    <div class="cep-box">
+      <span style="font-size:1.5rem;">📍</span>
+      <input type="text" placeholder="Digite seu CEP (ex: 64200-000)" maxlength="9" id="cep-input" />
+      <button>🔍 Buscar</button>
+    </div>
+
+    <div class="chips">
+      <button class="chip ativo">🏥 Hospitais</button>
+      <button class="chip">💊 Farmácias</button>
+      <button class="chip">🏢 CRAS</button>
+      <button class="chip">🏛️ CREAS</button>
+      <button class="chip">🏃 Academia da Terceira Idade</button>
+      <button class="chip">🤝 Centros de Convivência</button>
+      <button class="chip">🦷 Dentista</button>
+    </div>
+
+    <div class="mapa-placeholder">
+      <div class="icone-mapa">🗺️</div>
+      <h3>Mapa Interativo</h3>
+      <p>Digite seu CEP acima para ver os serviços no mapa</p>
+      <p style="margin-top:0.5rem; font-size:0.88rem;">(Google Maps / OpenStreetMap integrado)</p>
+    </div>
+
+    <h2 style="margin-bottom:1rem;">📋 Serviços Importantes</h2>
+    <div class="cards-grid">
+      <div class="card azul">
+        <div class="card-icone">🏢</div>
+        <h3>CRAS — Centro de Referência de Assistência Social</h3>
+        <p>Cadastro no BPC/LOAS, Bolsa Família e outros benefícios. Atendimento gratuito e prioritário para idosos.</p>
+        <span class="tag">Gratuito</span>
+      </div>
+      <div class="card laranja">
+        <div class="card-icone">🏛️</div>
+        <h3>CREAS — Centro de Referência Especializado</h3>
+        <p>Atendimento a casos de violência, maus-tratos e abandono. Oferece apoio psicossocial gratuito.</p>
+        <span class="tag">Proteção</span>
+      </div>
+      <div class="card">
+        <div class="card-icone">🏃</div>
+        <h3>Academia da Terceira Idade</h3>
+        <p>Exercícios físicos ao ar livre com equipamentos adaptados para idosos. Gratuito nos parques municipais.</p>
+        <span class="tag">Saúde</span>
+      </div>
+      <div class="card roxo">
+        <div class="card-icone">🤝</div>
+        <h3>Centros de Convivência</h3>
+        <p>Atividades sociais, artesanato, dança, jogos e amizades. Combate a solidão e promove bem-estar.</p>
+        <span class="tag">Social</span>
+      </div>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: PRECISO DE AJUDA -->
+<!-- ============================================================ -->
+<div id="page-ajuda" class="pagina">
+  <div class="header-pagina laranja-grad">
+    <div class="badge">🆘 Estamos aqui</div>
+    <h1>Preciso de Ajuda</h1>
+    <p>Você não está sozinho. Aqui você encontra suporte e orientação.</p>
+  </div>
+
+  <div class="secao">
+    <div class="alerta">
+      🚨 Em caso de perigo imediato, ligue <strong>192 (SAMU)</strong> ou <strong>190 (Polícia)</strong> agora mesmo!
+    </div>
+
+    <h2>Canais de Denúncia</h2>
+    <p class="subtitulo">Gratuitos, confidenciais e disponíveis 24 horas</p>
+
+    <div class="denuncia-card">
+      <h3>📞 Disque 100 — Direitos Humanos</h3>
+      <p>Para denunciar violência, maus-tratos, abandono ou negligência contra o idoso. Gratuito, 24h por dia, 7 dias por semana.</p>
+      <div class="contato">☎️ Ligue: 100</div>
+    </div>
+
+    <div class="denuncia-card">
+      <h3>👮 Polícia Militar</h3>
+      <p>Para situações de perigo imediato, agressão física ou ameaça.</p>
+      <div class="contato">☎️ Ligue: 190</div>
+    </div>
+
+    <div class="denuncia-card">
+      <h3>🚑 SAMU — Serviço de Atendimento Móvel de Urgência</h3>
+      <p>Para emergências médicas — queda, mal súbito, infarto, AVC.</p>
+      <div class="contato">☎️ Ligue: 192</div>
+    </div>
+
+    <h2 style="margin-top: 2rem;">🤝 Solicitar Orientação Social</h2>
+    <p class="subtitulo">Preencha abaixo para receber orientação de um assistente social</p>
+
+    <div class="form-voluntario">
+      <h3>📝 Formulário de Orientação</h3>
+      <div class="campo">
+        <label>Seu nome</label>
+        <input type="text" placeholder="Digite seu nome completo">
+      </div>
+      <div class="campo">
+        <label>Telefone para contato</label>
+        <input type="tel" placeholder="(99) 99999-9999">
+      </div>
+      <div class="campo">
+        <label>Cidade e Estado</label>
+        <input type="text" placeholder="Ex: Piripiri - PI">
+      </div>
+      <div class="campo">
+        <label>Tipo de ajuda que precisa</label>
+        <select>
+          <option>Orientação sobre benefícios (BPC, aposentadoria...)</option>
+          <option>Denúncia de maus-tratos</option>
+          <option>Situação de abandono ou solidão</option>
+          <option>Dúvidas sobre direitos</option>
+          <option>Ajuda com tecnologia</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label>Conte um pouco mais (opcional)</label>
+        <textarea rows="3" placeholder="Descreva brevemente sua situação..."></textarea>
+      </div>
+      <button class="btn-enviar">📤 Enviar pedido de ajuda</button>
+    </div>
+
+    <div style="margin-top:2rem; background:var(--verde-fundo); border-radius:var(--radius); padding:1.5rem; border-left:6px solid var(--verde);">
+      <h3 style="color:var(--verde); margin-bottom:0.5rem;">🏢 Entidades de Apoio</h3>
+      <p style="color:var(--cinza-texto); font-size:0.95rem;">
+        <strong>CRAS:</strong> Centro de Referência de Assistência Social — benefícios sociais<br>
+        <strong>CREAS:</strong> Violência e situações de risco<br>
+        <strong>Conselho Municipal do Idoso:</strong> Defesa dos direitos<br>
+        <strong>Ministério Público:</strong> Casos graves e denúncias formais<br>
+        <strong>Pastoral dos Idosos:</strong> Visitas e apoio espiritual
+      </p>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: VOLUNTÁRIOS -->
+<!-- ============================================================ -->
+<div id="page-voluntarios" class="pagina">
+  <div class="header-pagina verde-grad">
+    <div class="badge">🤗 Comunidade</div>
+    <h1>Rede de Voluntários</h1>
+    <p>Jovens, estudantes, igrejas e ONGs unidos para combater a solidão</p>
+  </div>
+
+  <div class="secao">
+    <div class="cards-grid" style="margin-bottom:2rem;">
+      <div class="card">
+        <div class="card-icone">👨‍🎓</div>
+        <h3>Estudantes Voluntários</h3>
+        <p>Jovens universitários que ajudam com tecnologia, leituras, acompanhamento e conversas reconfortantes.</p>
+        <span class="tag">Tecnologia & Companhia</span>
+      </div>
+      <div class="card azul">
+        <div class="card-icone">⛪</div>
+        <h3>Igrejas e Pastorais</h3>
+        <p>A Pastoral dos Idosos e outras igrejas realizam visitas domiciliares, missas e encontros de convivência.</p>
+        <span class="tag">Visitas & Fé</span>
+      </div>
+      <div class="card laranja">
+        <div class="card-icone">🏢</div>
+        <h3>ONGs Parceiras</h3>
+        <p>Organizações que oferecem apoio jurídico, cuidados de saúde, atividades e assistência social gratuita.</p>
+        <span class="tag">Assistência</span>
+      </div>
+    </div>
+
+    <h2>Quero ser Voluntário</h2>
+    <p class="subtitulo">Cadastre-se e faça a diferença na vida de um idoso</p>
+    <div class="form-voluntario">
+      <h3>📋 Cadastro de Voluntário</h3>
+      <div class="campo">
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="campo">
+        <label>Idade</label>
+        <input type="number" placeholder="Sua idade" min="14">
+      </div>
+      <div class="campo">
+        <label>Telefone (WhatsApp)</label>
+        <input type="tel" placeholder="(99) 99999-9999">
+      </div>
+      <div class="campo">
+        <label>Cidade</label>
+        <input type="text" placeholder="Sua cidade">
+      </div>
+      <div class="campo">
+        <label>Como quer ajudar?</label>
+        <select>
+          <option>Ensinar tecnologia (celular, internet)</option>
+          <option>Visitas e companhia</option>
+          <option>Apoio na leitura e escrita</option>
+          <option>Transporte e acompanhamento</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <button class="btn-enviar">🤝 Quero ser Voluntário!</button>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PÁGINA: EMERGÊNCIA -->
+<!-- ============================================================ -->
+<div id="page-emergencia" class="pagina">
+  <div style="background:#b71c1c; color:#fff; padding:2.5rem 2rem; text-align:center;">
+    <div style="font-size:4rem; margin-bottom:0.5rem;">🚨</div>
+    <h1 style="font-size:2.2rem; font-weight:900;">EMERGÊNCIA</h1>
+    <p style="font-size:1.15rem; opacity:0.92;">Escolha a opção de ajuda abaixo</p>
+  </div>
+
+  <div style="max-width:640px; margin:0 auto; padding: 2rem 2rem;">
+    <a href="tel:192" style="display:block; text-decoration:none;">
+      <div style="background:#c62828; color:#fff; border-radius:var(--radius); padding:2rem; text-align:center; margin-bottom:1rem; box-shadow: 0 4px 20px rgba(198,40,40,0.4); cursor:pointer;">
+        <div style="font-size:3rem;">🚑</div>
+        <div style="font-size:2rem; font-weight:900; margin:0.3rem 0;">192 — SAMU</div>
+        <div style="font-size:1rem; opacity:0.9;">Emergência médica, queda, mal súbito, infarto</div>
+      </div>
+    </a>
+    <a href="tel:190" style="display:block; text-decoration:none;">
+      <div style="background:#1565C0; color:#fff; border-radius:var(--radius); padding:2rem; text-align:center; margin-bottom:1rem; box-shadow: 0 4px 20px rgba(21,101,192,0.4); cursor:pointer;">
+        <div style="font-size:3rem;">👮</div>
+        <div style="font-size:2rem; font-weight:900; margin:0.3rem 0;">190 — Polícia</div>
+        <div style="font-size:1rem; opacity:0.9;">Perigo, violência, ameaça ou roubo</div>
+      </div>
+    </a>
+    <a href="tel:193" style="display:block; text-decoration:none;">
+      <div style="background:#E65100; color:#fff; border-radius:var(--radius); padding:2rem; text-align:center; margin-bottom:1rem; box-shadow: 0 4px 20px rgba(230,81,0,0.4); cursor:pointer;">
+        <div style="font-size:3rem;">🚒</div>
+        <div style="font-size:2rem; font-weight:900; margin:0.3rem 0;">193 — Bombeiros</div>
+        <div style="font-size:1rem; opacity:0.9;">Incêndio, resgate ou acidente</div>
+      </div>
+    </a>
+    <a href="tel:100" style="display:block; text-decoration:none;">
+      <div style="background:#6A1B9A; color:#fff; border-radius:var(--radius); padding:2rem; text-align:center; margin-bottom:1rem; box-shadow: 0 4px 20px rgba(106,27,154,0.4); cursor:pointer;">
+        <div style="font-size:3rem;">📞</div>
+        <div style="font-size:2rem; font-weight:900; margin:0.3rem 0;">100 — Disque Direitos</div>
+        <div style="font-size:1rem; opacity:0.9;">Denúncia de maus-tratos e violência</div>
+      </div>
+    </a>
+
+    <div style="background:#FFEBEE; border-radius:var(--radius); padding:1.5rem; margin-top:0.5rem; border: 2px solid #c62828;">
+      <h3 style="color:#b71c1c; margin-bottom:0.8rem;">🏠 Avisar Familiar Cadastrado</h3>
+      <div class="campo">
+        <label style="color:#555;">Nome do familiar</label>
+        <input type="text" placeholder="Nome do familiar ou cuidador">
+      </div>
+      <button class="btn-enviar" style="background:#c62828;">📱 Enviar alerta para o familiar</button>
+    </div>
+
+    <div style="text-align:center; margin-top:1.5rem;">
+      <button onclick="ir('home')" style="background:none; border:2px solid var(--cinza-texto); color:var(--cinza-texto); border-radius:10px; padding:0.7rem 2rem; font-size:1rem; font-weight:700; cursor:pointer; font-family:'Nunito',sans-serif;">
+        ← Voltar para o início
+      </button>
+    </div>
+  </div>
+  <footer><strong>Conecta Idoso</strong> — Projeto Integrador 2026</footer>
+</div>
+
+<script>
+  const paginas = ['home','direitos','digital','assistiva','servicos','ajuda','voluntarios','emergencia'];
+
+  function aplicarContraste(ativo) {
+    document.body.classList.toggle('alto-contraste', ativo);
+    document.getElementById('toggle-contraste').checked = ativo;
+    localStorage.setItem('conecta-contraste', ativo ? 'alto' : 'normal');
+  }
+
+  document.getElementById('toggle-contraste').addEventListener('change', function() {
+    aplicarContraste(this.checked);
+  });
+
+  (function initContraste() {
+    const salvo = localStorage.getItem('conecta-contraste');
+    aplicarContraste(salvo !== 'normal');
+  })();
+
+  function ir(id) {
+    paginas.forEach(p => {
+      const el = document.getElementById('page-'+p);
+      const nav = document.getElementById('nav-'+p);
+      if(el) el.classList.toggle('ativa', p === id);
+      if(nav) nav.classList.toggle('ativo', p === id);
+    });
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  document.querySelectorAll('.chip').forEach(c => {
+    c.addEventListener('click', function() {
+      document.querySelectorAll('.chip').forEach(x => x.classList.remove('ativo'));
+      this.classList.add('ativo');
+    });
+  });
+
+  document.getElementById('cep-input').addEventListener('input', function() {
+    let v = this.value.replace(/\D/g,'');
+    if(v.length > 5) v = v.slice(0,5)+'-'+v.slice(5,8);
+    this.value = v;
+  });
+</script>
+</body>
+</html>
