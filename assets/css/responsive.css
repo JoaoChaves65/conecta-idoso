@@ -1,0 +1,389 @@
+/* ── Tablet / telas médias ── */
+@media (max-width: 900px) {
+  :root {
+    --page-gutter: clamp(0.875rem, 3.5vw, 1.5rem);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .btn-emergencia-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Contraste vai pro drawer — libera espaço no topo */
+  .nav-acoes > .toggle-contraste {
+    display: none;
+  }
+
+  .nav-drawer-footer {
+    display: block;
+  }
+
+  .nav-drawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(300px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    background: var(--verde);
+    z-index: 180;
+    padding: calc(var(--nav-height) + 0.75rem) 1rem 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-drawer.aberto {
+    transform: translateX(0);
+  }
+
+  .nav-overlay {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: 100%;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    width: 100%;
+    white-space: normal;
+  }
+
+  .nav-links .btn-emergencia-nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    font-size: 16px !important;
+    padding: 12px 14px !important;
+    white-space: normal;
+  }
+
+  .nav-acoes .nav-links {
+    display: none;
+  }
+
+  .logo-slogan {
+    display: none;
+  }
+
+  .toggle-contraste--drawer .toggle-contraste-texto {
+    display: inline;
+  }
+}
+
+/* ── Celulares grandes / phablets (iPhone Plus, Pixel Pro…) ── */
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 14px;
+    --font-hero: clamp(1.45rem, 6vw, 2rem);
+    --font-h1: clamp(1.3rem, 5vw, 1.75rem);
+    --font-h2: clamp(1.15rem, 4.5vw, 1.5rem);
+  }
+
+  .acesso-rapido,
+  .cards-grid,
+  .cards-grid--tutorials {
+    grid-template-columns: 1fr;
+  }
+
+  .direito-item {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    align-items: center;
+  }
+
+  .cep-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cep-box input,
+  .cep-box button {
+    width: 100%;
+  }
+
+  .chip {
+    flex: 1 1 100%;
+  }
+
+  .btn-enviar--inline {
+    max-width: 100%;
+  }
+
+  .form-voluntario {
+    padding: 1.15rem;
+  }
+}
+
+/* ── Celulares padrão (iPhone XR/14, Pixel 7, Galaxy S…) ── */
+@media (max-width: 480px) {
+  :root {
+    --nav-height: 56px;
+    --page-gutter: 12px;
+    --radius: 12px;
+    --font-base: 16px;
+    --font-hero: 1.4rem;
+    --font-h1: 1.3rem;
+    --font-h2: 1.15rem;
+    --tap-min: 42px;
+  }
+
+  nav {
+    padding: 0 10px;
+  }
+
+  .nav-inner {
+    gap: 4px;
+  }
+
+  .logo {
+    gap: 8px;
+    max-width: calc(100% - 96px);
+  }
+
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .logo-text {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-acoes {
+    gap: 4px;
+  }
+
+  .btn-emergencia-mobile {
+    padding: 8px 10px;
+    font-size: 16px;
+    min-width: var(--tap-min);
+  }
+
+  .btn-emergencia-mobile .btn-emerg-label {
+    display: none;
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+  }
+
+  .hero {
+    padding-top: 1.5rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .acesso-rapido {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    gap: 10px;
+  }
+
+  .btn-rapido {
+    padding: 1rem 0.875rem;
+  }
+
+  .btn-rapido .icone {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .btn-rapido .titulo {
+    font-size: 0.95rem;
+  }
+
+  .btn-rapido .desc {
+    font-size: 0.8rem;
+  }
+
+  .btn-emergencia-grande {
+    font-size: 1rem;
+    padding: 0.875rem 0.75rem;
+    letter-spacing: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .secao {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .secao .subtitulo {
+    margin-bottom: 1.25rem;
+    font-size: 0.92rem;
+  }
+
+  .card,
+  .direito-item,
+  .denuncia-card,
+  .tutorial-card {
+    padding: 1rem;
+  }
+
+  .alerta {
+    font-size: 0.88rem;
+    padding: 0.875rem;
+  }
+
+  .header-pagina .badge {
+    font-size: 0.78rem;
+    padding: 3px 12px;
+  }
+
+  .emergencia-card {
+    padding: 1rem;
+  }
+
+  .emergencia-card .numero {
+    font-size: 1.25rem;
+  }
+
+  .emergencia-card .descricao {
+    font-size: 0.82rem;
+  }
+
+  .btn-voltar {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+
+  footer {
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    padding: 1.25rem 12px;
+  }
+
+  .sobre {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .mapa-placeholder {
+    height: 200px;
+  }
+
+  .toggle-contraste--drawer {
+    padding: 10px 12px;
+  }
+
+  .toggle-contraste--drawer .toggle-switch {
+    width: 44px;
+    height: 24px;
+  }
+
+  .toggle-contraste--drawer .toggle-switch::after {
+    width: 16px;
+    height: 16px;
+  }
+
+  .toggle-contraste--drawer input:checked + .toggle-switch::after {
+    transform: translateX(20px);
+  }
+}
+
+/* ── Celulares compactos (iPhone SE, Galaxy A…) ── */
+@media (max-width: 375px) {
+  :root {
+    --page-gutter: 10px;
+  }
+
+  .logo-text {
+    font-size: 13px;
+  }
+
+  .hero h1 {
+    font-size: 1.25rem;
+  }
+
+  .chip {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+}
+
+/* ── Hover só em desktop (evita "grudar" no touch) ── */
+@media (hover: hover) {
+  .btn-rapido:hover,
+  .btn-rapido:focus-visible {
+    transform: translateY(-4px);
+  }
+
+  .tutorial-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .emergencia-link:hover .emergencia-card {
+    transform: scale(1.02);
+  }
+}
+
+@media (hover: none) {
+  .btn-rapido:hover,
+  .tutorial-card:hover,
+  .emergencia-link:hover .emergencia-card {
+    transform: none;
+  }
+}
+
+/* ── Acessibilidade ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Safe area (notch / barra inferior) ── */
+@supports (padding: env(safe-area-inset-bottom)) {
+  nav {
+    padding-left: max(10px, env(safe-area-inset-left));
+    padding-right: max(10px, env(safe-area-inset-right));
+  }
+
+  .nav-drawer {
+    padding-right: max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+  }
+
+  .secao,
+  .acesso-rapido,
+  .hero,
+  .sobre,
+  .centro-padded,
+  .emergencia-lista,
+  .emergencia-header,
+  .header-pagina,
+  footer {
+    padding-left: max(12px, env(safe-area-inset-left));
+    padding-right: max(12px, env(safe-area-inset-right));
+  }
+}

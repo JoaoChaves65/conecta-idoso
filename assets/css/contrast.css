@@ -1,0 +1,241 @@
+/* Alto contraste — ativo por padrão para idosos */
+body.alto-contraste {
+  background: #000 !important;
+  color: #fff !important;
+  font-size: 19px;
+}
+
+body.alto-contraste nav {
+  background: #000 !important;
+  border-bottom: 4px solid #ff0;
+  box-shadow: none;
+}
+
+body.alto-contraste .logo-icon {
+  background: #000;
+  border: 3px solid #ff0;
+}
+
+body.alto-contraste .logo-text,
+body.alto-contraste .logo-slogan {
+  color: #fff !important;
+}
+
+body.alto-contraste .nav-links a {
+  color: #fff !important;
+  border: 2px solid transparent;
+}
+
+body.alto-contraste .nav-links a:hover,
+body.alto-contraste .nav-links a.ativo {
+  background: #ff0 !important;
+  color: #000 !important;
+  border-color: #fff;
+}
+
+body.alto-contraste .btn-emergencia-nav,
+body.alto-contraste .btn-emergencia-mobile {
+  background: #f00 !important;
+  color: #fff !important;
+  border: 3px solid #fff !important;
+}
+
+body.alto-contraste .nav-toggle {
+  background: #000 !important;
+  border-color: #ff0 !important;
+}
+
+body.alto-contraste .nav-toggle span {
+  background: #fff !important;
+}
+
+body.alto-contraste .toggle-contraste {
+  background: #000 !important;
+  border: 3px solid #ff0 !important;
+}
+
+body.alto-contraste .toggle-contraste-texto,
+body.alto-contraste .icone-contraste {
+  color: #fff !important;
+}
+
+body.alto-contraste .toggle-switch {
+  background: #333 !important;
+  border-color: #fff !important;
+}
+
+body.alto-contraste .toggle-contraste input:checked + .toggle-switch {
+  background: #ff0 !important;
+  border-color: #fff !important;
+}
+
+body.alto-contraste .toggle-contraste input:checked + .toggle-switch::after {
+  background: #000 !important;
+}
+
+body.alto-contraste .hero,
+body.alto-contraste .header-pagina,
+body.alto-contraste .emergencia-header {
+  background: #000 !important;
+  border-bottom: 4px solid #ff0;
+  color: #fff !important;
+}
+
+body.alto-contraste .hero p,
+body.alto-contraste .header-pagina p,
+body.alto-contraste .header-pagina .badge,
+body.alto-contraste .emergencia-header p {
+  opacity: 1 !important;
+  color: #fff !important;
+}
+
+body.alto-contraste .header-pagina .badge {
+  background: #ff0 !important;
+  color: #000 !important;
+  border: 2px solid #fff;
+}
+
+body.alto-contraste .btn-rapido,
+body.alto-contraste .card,
+body.alto-contraste .direito-item,
+body.alto-contraste .tutorial-card,
+body.alto-contraste .denuncia-card,
+body.alto-contraste .form-voluntario,
+body.alto-contraste .cep-box,
+body.alto-contraste .sobre,
+body.alto-contraste .info-box {
+  background: #000 !important;
+  color: #fff !important;
+  border: 3px solid #fff !important;
+  box-shadow: none !important;
+  border-left: 6px solid #ff0 !important;
+}
+
+body.alto-contraste .btn-rapido .titulo,
+body.alto-contraste .btn-rapido .desc,
+body.alto-contraste .card h3,
+body.alto-contraste .card p,
+body.alto-contraste .direito-item h3,
+body.alto-contraste .direito-item p,
+body.alto-contraste .tutorial-card h3,
+body.alto-contraste .tutorial-card p,
+body.alto-contraste .denuncia-card h3,
+body.alto-contraste .denuncia-card p,
+body.alto-contraste .denuncia-card .contato,
+body.alto-contraste .sobre p,
+body.alto-contraste .info-box p,
+body.alto-contraste .info-box h3 {
+  color: #fff !important;
+}
+
+body.alto-contraste .secao h2,
+body.alto-contraste .sobre h2 {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .secao .subtitulo,
+body.alto-contraste .campo label {
+  color: #fff !important;
+}
+
+body.alto-contraste .tag,
+body.alto-contraste .nivel,
+body.alto-contraste .chip {
+  background: #000 !important;
+  color: #ff0 !important;
+  border: 2px solid #ff0 !important;
+}
+
+body.alto-contraste .chip.ativo,
+body.alto-contraste .chip:hover {
+  background: #ff0 !important;
+  color: #000 !important;
+}
+
+body.alto-contraste .btn-enviar,
+body.alto-contraste .cep-box button {
+  background: #ff0 !important;
+  color: #000 !important;
+  border: 3px solid #fff !important;
+  font-weight: 900 !important;
+}
+
+body.alto-contraste .btn-emergencia-grande {
+  background: #f00 !important;
+  color: #fff !important;
+  border: 4px solid #fff !important;
+  box-shadow: none !important;
+}
+
+body.alto-contraste .alerta {
+  background: #000 !important;
+  color: #ff0 !important;
+  border: 3px solid #f00 !important;
+  border-left: 8px solid #f00 !important;
+}
+
+body.alto-contraste .mapa-placeholder {
+  background: #000 !important;
+  color: #ff0 !important;
+  border: 3px dashed #ff0 !important;
+}
+
+body.alto-contraste .campo input,
+body.alto-contraste .campo select,
+body.alto-contraste .campo textarea,
+body.alto-contraste .cep-box input {
+  background: #000 !important;
+  color: #fff !important;
+  border: 3px solid #fff !important;
+}
+
+body.alto-contraste .campo input:focus,
+body.alto-contraste .campo select:focus,
+body.alto-contraste .campo textarea:focus,
+body.alto-contraste .cep-box input:focus {
+  border-color: #ff0 !important;
+  outline: 2px solid #ff0;
+}
+
+body.alto-contraste footer {
+  background: #000 !important;
+  color: #fff !important;
+  border-top: 4px solid #ff0;
+}
+
+body.alto-contraste footer strong {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .form-voluntario h3 {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .emergencia-header {
+  background: #f00 !important;
+  border-bottom: 4px solid #fff !important;
+}
+
+body.alto-contraste .emergencia-card--samu { background: #f00 !important; }
+body.alto-contraste .emergencia-card--policia { background: #000 !important; border: 3px solid #ff0 !important; }
+body.alto-contraste .emergencia-card--bombeiros { background: #000 !important; border: 3px solid #ff9900 !important; }
+body.alto-contraste .emergencia-card--disque { background: #000 !important; border: 3px solid #ff0 !important; }
+
+body.alto-contraste .btn-voltar {
+  background: #000 !important;
+  color: #fff !important;
+  border: 3px solid #fff !important;
+}
+
+body.alto-contraste .nav-overlay {
+  background: rgba(0, 0, 0, 0.85) !important;
+}
+
+body.alto-contraste .nav-drawer-footer {
+  border-top-color: #ff0 !important;
+}
+
+body.alto-contraste .toggle-contraste--drawer {
+  background: #000 !important;
+  border: 3px solid #ff0 !important;
+}

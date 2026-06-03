@@ -1,0 +1,32 @@
+:root {
+  --verde: #2E8B57;
+  --verde-claro: #4CAF76;
+  --verde-fundo: #E8F5EE;
+  --azul: #1565C0;
+  --azul-claro: #2196F3;
+  --azul-fundo: #E3F2FD;
+  --laranja: #E65100;
+  --laranja-fundo: #FFF3E0;
+  --roxo: #7B1FA2;
+  --roxo-fundo: #F3E5F5;
+  --teal: #00838F;
+  --teal-fundo: #E0F7FA;
+  --verde-escuro: #2E7D32;
+  --verde-escuro-fundo: #E8F5E9;
+  --vermelho: #c62828;
+  --vermelho-escuro: #b71c1c;
+  --cinza: #F5F5F5;
+  --cinza-texto: #555;
+  --preto: #222;
+  --branco: #fff;
+  --radius: 16px;
+  --sombra: 0 4px 20px rgba(0, 0, 0, 0.10);
+  --nav-height: 72px;
+  --page-gutter: clamp(1rem, 4vw, 2rem);
+  --font-base: clamp(16px, 2.5vw, 18px);
+  --font-hero: clamp(1.6rem, 5vw, 2.6rem);
+  --font-h1: clamp(1.5rem, 4vw, 2rem);
+  --font-h2: clamp(1.35rem, 3.5vw, 1.9rem);
+  --tap-min: 44px;
+  --content-max: 960px;
+}
