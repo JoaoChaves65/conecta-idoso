@@ -159,6 +159,29 @@
   margin: 0;
 }
 
+.servicos-endereco--vazio {
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.servicos-contato {
+  margin-top: 0.35rem !important;
+  font-size: var(--font-sm);
+  line-height: 1.6;
+}
+
+.servicos-contato a {
+  color: var(--azul);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.servicos-contato a:hover,
+.servicos-contato a:focus-visible {
+  color: var(--azul-claro);
+}
+
 .servicos-item .distancia {
   display: inline-block;
   margin-top: 0.5rem;
@@ -220,6 +243,10 @@ body.alto-contraste .servicos-item {
 body.alto-contraste .servicos-item h3,
 body.alto-contraste .servicos-item p {
   color: #fff !important;
+}
+
+body.alto-contraste .servicos-contato a {
+  color: #ff0 !important;
 }
 
 body.alto-contraste .servicos-status--cache {

@@ -4,7 +4,7 @@ const OVERPASS_INTERVAL_MS = 4000;
 const OVERPASS_RETRY_ESPERA_MS = 12000;
 const OVERPASS_URL = 'https://overpass-api.de/api/interpreter';
 const LS_CEP_KEY = 'conecta-servicos-cep';
-const LS_CACHE_PREFIX = 'conecta-osm-dia';
+const LS_CACHE_PREFIX = 'conecta-osm-dia-v2';
 const MAPA_PADRAO = { lat: -4.273, lon: -41.778, zoom: 13, label: 'Piripiri, PI' };
 const NOMINATIM_HEADERS = {
   'Accept-Language': 'pt-BR',
@@ -16,8 +16,9 @@ const TIPOS = {
     label: 'Hospital',
     emoji: '🏥',
     filtrar: el =>
-      ['hospital', 'clinic'].includes(el.amenity) ||
+      el.amenity === 'hospital' ||
       el.healthcare === 'hospital' ||
+      (el.amenity === 'clinic' && nomeContem(el, 'hospital')) ||
       (nomeContem(el, 'hospital') && !nomeContem(el, 'farmácia') && !nomeContem(el, 'farmacia')),
   },
   farmacia: {
@@ -54,7 +55,11 @@ const TIPOS = {
   dentista: {
     label: 'Dentista / Saúde bucal',
     emoji: '🦷',
-    filtrar: el => el.amenity === 'dentist' || el.amenity === 'doctors',
+    filtrar: el =>
+      el.amenity === 'dentist' ||
+      nomeContem(el, 'dent') ||
+      nomeContem(el, 'odont') ||
+      nomeContem(el, 'odonto'),
   },
 };
 
@@ -73,6 +78,91 @@ let ultimaOverpassMs = 0;
 
 function nomeContem(el, texto) {
   return (el.nome || '').toLowerCase().includes(texto);
+}
+
+const ROTULOS_TIPO = {
+  hospital: 'Hospital',
+  clinic: 'Clínica',
+  doctors: 'Consultório médico',
+  dentist: 'Consultório odontológico',
+  pharmacy: 'Farmácia',
+  social_facility: 'Serviço social',
+  community_centre: 'Centro comunitário',
+  fitness_centre: 'Academia / ginásio',
+};
+
+function extrairNome(tags) {
+  const bruto = (tags.name || tags['name:pt'] || tags.operator || tags.brand || '').trim();
+  if (bruto) return bruto;
+
+  const chave = tags.amenity || tags.healthcare || tags.leisure || '';
+  const rotulo = ROTULOS_TIPO[chave];
+  if (rotulo) return `${rotulo} (sem nome no mapa)`;
+  return 'Local sem nome no mapa';
+}
+
+function montarEndereco(tags) {
+  const rua = tags['addr:street'] || tags['addr:place'] || tags['addr:road'];
+  const num = tags['addr:housenumber'];
+  const bairro = tags['addr:suburb'] || tags['addr:neighbourhood'] || tags['addr:quarter'];
+  const cidade = tags['addr:city'] || tags['addr:town'] || tags['addr:village'];
+
+  const linha1 = [rua, num].filter(Boolean).join(', ');
+  const linha2 = [bairro, cidade].filter(Boolean).join(' — ');
+  return [linha1, linha2].filter(Boolean).join(' · ');
+}
+
+function extrairContatos(tags) {
+  const telefone =
+    tags.phone ||
+    tags['contact:phone'] ||
+    tags.mobile ||
+    tags['contact:mobile'] ||
+    tags['contact:whatsapp'] ||
+    '';
+  const email = tags.email || tags['contact:email'] || '';
+  let site = tags.website || tags['contact:website'] || tags.url || '';
+  if (site && !/^https?:\/\//i.test(site)) site = `https://${site}`;
+  return { telefone: telefone.trim(), email: email.trim(), site: site.trim() };
+}
+
+function formatarContatosHtml(contatos) {
+  const partes = [];
+  if (contatos.telefone) {
+    const tel = contatos.telefone.replace(/[^\d+]/g, '');
+    partes.push(`📞 <a href="tel:${tel}">${escapeHtml(contatos.telefone)}</a>`);
+  }
+  if (contatos.email) {
+    partes.push(`✉️ <a href="mailto:${escapeHtml(contatos.email)}">${escapeHtml(contatos.email)}</a>`);
+  }
+  if (contatos.site) {
+    const label = contatos.site.replace(/^https?:\/\//i, '').slice(0, 40);
+    partes.push(`🌐 <a href="${escapeHtml(contatos.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
+  }
+  if (!partes.length) return '';
+  return `<p class="servicos-contato">${partes.join('<br>')}</p>`;
+}
+
+function formatarDetalhesLocal(loc) {
+  const partes = [];
+  if (loc.endereco) partes.push(escapeHtml(loc.endereco));
+  else partes.push('<em>Endereço não informado no mapa</em>');
+
+  const c = loc.contatos || {};
+  if (c.telefone) {
+    const tel = c.telefone.replace(/[^\d+]/g, '');
+    partes.push(`📞 <a href="tel:${tel}">${escapeHtml(c.telefone)}</a>`);
+  }
+  if (c.email) {
+    partes.push(`✉️ <a href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a>`);
+  }
+  if (c.site) {
+    const label = c.site.replace(/^https?:\/\//i, '').slice(0, 40);
+    partes.push(
+      `🌐 <a href="${escapeHtml(c.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`
+    );
+  }
+  return partes.join('<br>');
 }
 
 function cepLimpo(valor) {
@@ -456,25 +546,19 @@ function normalizarElementos(elements) {
     if (lat == null || lon == null) continue;
 
     const tags = el.tags || {};
-    const nome =
-      tags.name ||
-      tags['name:pt'] ||
-      tags.operator ||
-      tags.amenity ||
-      'Local sem nome';
+    const contatos = extrairContatos(tags);
 
     const item = {
       id: `${el.type}-${el.id}`,
-      nome,
+      nome: extrairNome(tags),
       lat,
       lon,
       amenity: tags.amenity || '',
       healthcare: tags.healthcare || '',
       leisure: tags.leisure || '',
       social: tags['social_facility:for'] || tags.social_facility || '',
-      endereco: [tags['addr:street'], tags['addr:housenumber'], tags['addr:suburb']]
-        .filter(Boolean)
-        .join(', '),
+      endereco: montarEndereco(tags),
+      contatos,
     };
 
     const chave = `${item.nome}-${item.lat.toFixed(4)}-${item.lon.toFixed(4)}`;
@@ -595,7 +679,7 @@ function renderizarMarcadores(locais) {
         ? `${Math.round(loc.distancia * 1000)} m`
         : `${loc.distancia.toFixed(1)} km`;
     marker.bindPopup(
-      `<strong>${cfg.emoji} ${loc.nome}</strong><br>${loc.endereco || 'Endereço não informado'}<br><em>${distTexto} de você</em>`
+      `<strong>${cfg.emoji} ${escapeHtml(loc.nome)}</strong><br>${formatarDetalhesLocal(loc)}<br><em>${distTexto} de você</em>`
     );
     marker.addTo(camadaMarcadores);
   });
@@ -637,7 +721,8 @@ function renderizarLista(locais) {
       return `
         <li class="servicos-item" data-tipo="${tipoAtivo}" data-lat="${loc.lat}" data-lon="${loc.lon}" tabindex="0" role="button">
           <h3>${cfg.emoji} ${escapeHtml(loc.nome)}</h3>
-          ${loc.endereco ? `<p>${escapeHtml(loc.endereco)}</p>` : ''}
+          ${loc.endereco ? `<p class="servicos-endereco">${escapeHtml(loc.endereco)}</p>` : '<p class="servicos-endereco servicos-endereco--vazio">Endereço não informado no mapa</p>'}
+          ${formatarContatosHtml(loc.contatos || {})}
           <span class="distancia">📏 ${dist} de distância</span>
         </li>
       `;
