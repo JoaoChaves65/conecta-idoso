@@ -38,12 +38,20 @@
   overflow: hidden;
   box-shadow: var(--sombra);
   background: var(--branco);
+  isolation: isolate;
 }
 
 .servicos-mapa {
   width: 100%;
   height: clamp(280px, 50vw, 420px);
   z-index: 1;
+  touch-action: pan-x pan-y;
+}
+
+.secao-servicos .chip,
+.secao-servicos .cep-box button,
+.secao-servicos .cep-box input {
+  touch-action: manipulation;
 }
 
 .mapa-overlay {

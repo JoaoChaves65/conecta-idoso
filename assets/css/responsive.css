@@ -30,6 +30,12 @@
 @media (max-width: 900px) {
   :root {
     --page-gutter: clamp(0.875rem, 3.5vw, 1.5rem);
+    /* logo + barra A+/contraste — mais alto que --nav-height sozinho */
+    --nav-stack-height: 7.25rem;
+  }
+
+  body.letras-maiores {
+    --nav-stack-height: 8.25rem;
   }
 
   .nav-toggle {
@@ -54,26 +60,23 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    top: 0;
+    top: var(--nav-stack-height);
     right: 0;
     width: min(300px, 85vw);
-    height: 100vh;
-    height: 100dvh;
+    height: calc(100dvh - var(--nav-stack-height));
     background: var(--verde);
     z-index: 180;
-    padding: calc(var(--nav-height) + 0.75rem) 1rem 1.5rem;
+    padding: 0.75rem 1rem 1.5rem;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     overflow-y: auto;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
   }
 
   .nav-drawer.aberto {
     transform: translateX(0);
-  }
-
-  .nav-overlay {
-    display: block;
+    pointer-events: auto;
   }
 
   .nav-links {
@@ -150,6 +153,11 @@
     --page-gutter: 12px;
     --radius: 12px;
     --tap-min: 42px;
+    --nav-stack-height: 6.75rem;
+  }
+
+  body.letras-maiores {
+    --nav-stack-height: 7.75rem;
   }
 
   nav {
@@ -339,6 +347,8 @@
   }
 
   .nav-drawer {
+    top: var(--nav-stack-height);
+    height: calc(100dvh - var(--nav-stack-height));
     padding-right: max(1rem, env(safe-area-inset-right));
     padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
   }
