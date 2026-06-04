@@ -4,31 +4,47 @@
   <p>Digite seu CEP e encontre os serviços mais próximos</p>
 </div>
 
-<div class="secao">
+<div class="secao secao-servicos">
   <div class="cep-box">
     <span class="cep-icone">📍</span>
-    <input type="text" placeholder="Digite seu CEP (ex: 64200-000)" maxlength="9" id="cep-input" inputmode="numeric">
-    <button type="button">🔍 Buscar</button>
+    <input type="text" placeholder="Digite seu CEP (ex: 64260-000)" maxlength="9" id="cep-input" inputmode="numeric" autocomplete="postal-code">
+    <button type="button" id="cep-buscar">🔍 Buscar</button>
   </div>
 
-  <div class="chips">
-    <button type="button" class="chip ativo">🏥 Hospitais</button>
-    <button type="button" class="chip">💊 Farmácias</button>
-    <button type="button" class="chip">🏢 CRAS</button>
-    <button type="button" class="chip">🏛️ CREAS</button>
-    <button type="button" class="chip">🏃 Academia da Terceira Idade</button>
-    <button type="button" class="chip">🤝 Centros de Convivência</button>
-    <button type="button" class="chip">🦷 Dentista</button>
+  <div class="servicos-status" id="servicos-status" role="status" aria-live="polite">
+    Carregando mapa…
   </div>
 
-  <div class="mapa-placeholder">
-    <div class="icone-mapa">🗺️</div>
-    <h3>Mapa Interativo</h3>
-    <p>Digite seu CEP acima para ver os serviços no mapa</p>
-    <p style="margin-top:0.5rem; font-size:0.88rem;">(Google Maps / OpenStreetMap integrado)</p>
+  <div class="mapa-container mostra-mapa">
+    <div id="servicos-mapa" class="servicos-mapa visivel" aria-label="Mapa de serviços próximos"></div>
+    <div class="mapa-overlay" id="mapa-overlay" aria-hidden="true">
+      <span class="mapa-overlay-cep" id="mapa-overlay-cep"></span>
+    </div>
   </div>
 
-  <h2 style="margin-bottom:1rem;">📋 Serviços Importantes</h2>
+  <div class="chips" id="servicos-chips">
+    <button type="button" class="chip ativo" data-tipo="mapa">🗺️ Ver mapa</button>
+    <button type="button" class="chip" data-tipo="hospital">🏥 Hospitais</button>
+    <button type="button" class="chip" data-tipo="farmacia">💊 Farmácias</button>
+    <button type="button" class="chip" data-tipo="cras">🏢 CRAS</button>
+    <button type="button" class="chip" data-tipo="creas">🏛️ CREAS</button>
+    <button type="button" class="chip" data-tipo="academia">🏃 Academia da Terceira Idade</button>
+    <button type="button" class="chip" data-tipo="convivencia">🤝 Centros de Convivência</button>
+    <button type="button" class="chip" data-tipo="dentista">🦷 Dentista</button>
+  </div>
+
+  <div class="servicos-resultados" id="servicos-resultados" hidden>
+    <h2 class="servicos-resultados-titulo">📍 Locais encontrados</h2>
+    <p class="servicos-local" id="servicos-local"></p>
+    <ul class="servicos-lista" id="servicos-lista"></ul>
+  </div>
+
+  <div class="info-box info-box--azul servicos-aviso">
+    <h3>ℹ️ Sobre CRAS e CREAS</h3>
+    <p>Alguns centros podem não aparecer no mapa. Se não encontrar, ligue <strong>156</strong> (Central de Atendimento) ou procure o CRAS da sua cidade na prefeitura.</p>
+  </div>
+
+  <h2 class="secao-servicos-titulo">📋 Serviços Importantes</h2>
   <div class="cards-grid">
     <div class="card azul">
       <div class="card-icone">🏢</div>

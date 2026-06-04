@@ -1,0 +1,243 @@
+.secao-servicos-titulo {
+  margin-bottom: 1rem;
+  font-size: var(--font-h2);
+  font-weight: 800;
+  color: var(--verde);
+}
+
+.servicos-status {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  background: var(--azul-fundo);
+  color: var(--azul);
+  font-weight: 600;
+  font-size: var(--font-sm);
+  line-height: 1.5;
+}
+
+.servicos-status--erro {
+  background: #FFEBEE;
+  color: var(--vermelho-escuro);
+}
+
+.servicos-status--ok {
+  background: var(--verde-fundo);
+  color: var(--verde);
+}
+
+.servicos-status--cache {
+  background: var(--verde-fundo);
+  color: var(--verde-escuro);
+}
+
+.mapa-container {
+  position: relative;
+  margin: 1rem 0 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  background: var(--branco);
+}
+
+.servicos-mapa {
+  width: 100%;
+  height: clamp(280px, 50vw, 420px);
+  z-index: 1;
+}
+
+.mapa-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 500;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+  pointer-events: none;
+}
+
+.mapa-overlay[aria-hidden="true"] {
+  display: none;
+}
+
+.mapa-overlay-cep {
+  color: #fff;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Pin vermelho — sua localização (CEP) */
+.marcador-usuario-leaflet {
+  background: none !important;
+  border: none !important;
+}
+
+.marcador-usuario {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+
+.marcador-usuario-ponto {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  background: var(--vermelho);
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.marcador-usuario-ponto::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -5px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.servicos-resultados {
+  margin-bottom: 1.5rem;
+}
+
+.servicos-resultados-titulo {
+  font-size: var(--font-h2);
+  font-weight: 800;
+  color: var(--verde);
+  margin-bottom: 0.5rem;
+}
+
+.servicos-local {
+  color: var(--cinza-texto);
+  font-size: var(--font-base);
+  margin-bottom: 1rem;
+}
+
+.servicos-lista {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.servicos-item {
+  background: var(--branco);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--sombra);
+  border-left: 5px solid var(--azul);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.servicos-item:hover,
+.servicos-item:focus-visible {
+  transform: translateX(4px);
+  outline: none;
+}
+
+.servicos-item h3 {
+  font-size: var(--font-base);
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+  color: var(--preto);
+}
+
+.servicos-item p {
+  font-size: var(--font-sm);
+  color: var(--cinza-texto);
+  margin: 0;
+}
+
+.servicos-item .distancia {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--azul);
+}
+
+.servicos-item[data-tipo="hospital"] { border-left-color: var(--vermelho); }
+.servicos-item[data-tipo="farmacia"] { border-left-color: #7B1FA2; }
+.servicos-item[data-tipo="cras"] { border-left-color: var(--azul); }
+.servicos-item[data-tipo="creas"] { border-left-color: var(--laranja); }
+.servicos-item[data-tipo="academia"] { border-left-color: #43A047; }
+.servicos-item[data-tipo="convivencia"] { border-left-color: var(--roxo); }
+.servicos-item[data-tipo="dentista"] { border-left-color: #00838F; }
+
+.servicos-aviso {
+  margin-bottom: 2rem;
+}
+
+.servicos-lista-vazia {
+  padding: 1rem;
+  color: var(--cinza-texto);
+  font-size: var(--font-base);
+  background: var(--cinza);
+  border-radius: var(--radius);
+}
+
+/* Leaflet popup — legível para idosos */
+.servicos-mapa .leaflet-popup-content {
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 12px 14px;
+}
+
+.servicos-mapa .leaflet-popup-content strong {
+  font-size: 16px;
+}
+
+body.alto-contraste .servicos-status {
+  background: #000 !important;
+  color: #ff0 !important;
+  border: 2px solid #fff;
+}
+
+body.alto-contraste .servicos-status--erro {
+  border-color: var(--vermelho) !important;
+  color: #ff0 !important;
+}
+
+body.alto-contraste .servicos-item {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+  border-left: 6px solid #ff0 !important;
+}
+
+body.alto-contraste .servicos-item h3,
+body.alto-contraste .servicos-item p {
+  color: #fff !important;
+}
+
+body.alto-contraste .servicos-status--cache {
+  background: #000 !important;
+  color: #ff0 !important;
+  border: 2px solid #fff;
+}
+
+body.alto-contraste .marcador-usuario-ponto {
+  background: var(--vermelho) !important;
+  border-color: #ff0 !important;
+  box-shadow: 0 0 0 2px #000;
+}
+
+body.alto-contraste .marcador-usuario-ponto::after {
+  background: #ff0;
+}
+
+body.alto-contraste .mapa-container {
+  border: 3px solid #fff;
+}

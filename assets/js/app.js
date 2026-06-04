@@ -1,6 +1,7 @@
 import { initContraste } from './contrast.js';
 import { initFonte } from './font-size.js';
 import { initPageHandlers } from './ui.js';
+import { initServicosMap, destroyServicosMap } from './servicos-map.js';
 
 const PAGES = ['home', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
 
@@ -50,6 +51,8 @@ function atualizarNav(id) {
 }
 
 async function carregarPagina(id) {
+  destroyServicosMap();
+
   const main = document.getElementById('main-content');
   if (!main || !PAGES.includes(id)) return;
 
@@ -65,6 +68,7 @@ async function carregarPagina(id) {
   }
 
   initPageHandlers();
+  if (id === 'servicos') initServicosMap();
 }
 
 export async function ir(id) {

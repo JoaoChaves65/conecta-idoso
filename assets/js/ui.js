@@ -1,4 +1,6 @@
 export function initPageHandlers() {
+  if (document.getElementById('servicos-mapa')) return;
+
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', function () {
       document.querySelectorAll('.chip').forEach(c => c.classList.remove('ativo'));
