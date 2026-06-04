@@ -87,6 +87,13 @@
   vertical-align: -0.15em;
 }
 
+.btn-emergencia-grande .ci {
+  width: 1.5em;
+  height: 1.5em;
+  min-width: 1.5em;
+  min-height: 1.5em;
+}
+
 .hero-titulo {
   display: inline-flex;
   align-items: center;
