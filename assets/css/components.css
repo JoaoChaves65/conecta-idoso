@@ -30,8 +30,10 @@
 }
 
 .btn-rapido .icone {
-  font-size: clamp(2.2rem, 6vw, 3rem);
   margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-rapido .titulo {
@@ -54,7 +56,11 @@
 .btn-rapido.verde-claro { border-top: 5px solid #43A047; }
 
 .btn-emergencia-grande {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
   background: var(--vermelho);
   color: #fff;
   font-size: clamp(1.1rem, 2.5vw, 1.4rem);
@@ -147,8 +153,10 @@
 .card.roxo-escuro { border-left-color: #6A1B9A; }
 
 .card .card-icone {
-  font-size: clamp(2rem, 5vw, 2.4rem);
   margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .card h3 {
@@ -197,8 +205,10 @@
 }
 
 .direito-item .icone {
-  font-size: clamp(1.8rem, 5vw, 2.2rem);
   flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.15rem;
 }
 
 .direito-item h3 {
@@ -229,8 +239,10 @@
 .tutorial-card:hover { transform: translateY(-3px); }
 
 .tutorial-card .play {
-  font-size: clamp(2.2rem, 5vw, 3rem);
   margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tutorial-card h3 {
@@ -504,8 +516,10 @@
 }
 
 .emergencia-header .icone-grande {
-  font-size: clamp(2.5rem, 10vw, 4rem);
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .emergencia-header h1 {

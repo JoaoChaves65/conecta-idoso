@@ -191,7 +191,9 @@
 }
 
 .servicos-item .distancia {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
   margin-top: 0.5rem;
   font-size: var(--font-sm);
   font-weight: 700;

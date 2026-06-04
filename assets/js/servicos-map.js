@@ -1,3 +1,5 @@
+import { iconHtml, initIcons } from './icons.js';
+
 const RAIO_METROS = 5000;
 const OVERPASS_TIMEOUT_MS = 28000;
 const OVERPASS_INTERVAL_MS = 4000;
@@ -14,7 +16,7 @@ const NOMINATIM_HEADERS = {
 const TIPOS = {
   hospital: {
     label: 'Hospital',
-    emoji: '🏥',
+    icon: 'hospital',
     filtrar: el =>
       el.amenity === 'hospital' ||
       el.healthcare === 'hospital' ||
@@ -23,22 +25,22 @@ const TIPOS = {
   },
   farmacia: {
     label: 'Farmácia',
-    emoji: '💊',
+    icon: 'pill',
     filtrar: el => el.amenity === 'pharmacy',
   },
   cras: {
     label: 'CRAS',
-    emoji: '🏢',
+    icon: 'building-2',
     filtrar: el => nomeContem(el, 'cras') || el.social === 'cras',
   },
   creas: {
     label: 'CREAS',
-    emoji: '🏛️',
+    icon: 'landmark',
     filtrar: el => nomeContem(el, 'creas') || el.social === 'creas',
   },
   academia: {
     label: 'Academia / Atividade física',
-    emoji: '🏃',
+    icon: 'dumbbell',
     filtrar: el =>
       el.leisure === 'fitness_centre' ||
       nomeContem(el, 'academia') ||
@@ -46,7 +48,7 @@ const TIPOS = {
   },
   convivencia: {
     label: 'Centro de convivência',
-    emoji: '🤝',
+    icon: 'heart-handshake',
     filtrar: el =>
       el.amenity === 'community_centre' ||
       nomeContem(el, 'convivência') ||
@@ -54,7 +56,7 @@ const TIPOS = {
   },
   dentista: {
     label: 'Dentista / Saúde bucal',
-    emoji: '🦷',
+    icon: 'smile',
     filtrar: el =>
       el.amenity === 'dentist' ||
       nomeContem(el, 'dent') ||
@@ -130,14 +132,14 @@ function formatarContatosHtml(contatos) {
   const partes = [];
   if (contatos.telefone) {
     const tel = contatos.telefone.replace(/[^\d+]/g, '');
-    partes.push(`📞 <a href="tel:${tel}">${escapeHtml(contatos.telefone)}</a>`);
+    partes.push(`${iconHtml('phone', 'ci ci--xs')} <a href="tel:${tel}">${escapeHtml(contatos.telefone)}</a>`);
   }
   if (contatos.email) {
-    partes.push(`✉️ <a href="mailto:${escapeHtml(contatos.email)}">${escapeHtml(contatos.email)}</a>`);
+    partes.push(`${iconHtml('mail', 'ci ci--xs')} <a href="mailto:${escapeHtml(contatos.email)}">${escapeHtml(contatos.email)}</a>`);
   }
   if (contatos.site) {
     const label = contatos.site.replace(/^https?:\/\//i, '').slice(0, 40);
-    partes.push(`🌐 <a href="${escapeHtml(contatos.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
+    partes.push(`${iconHtml('globe', 'ci ci--xs')} <a href="${escapeHtml(contatos.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`);
   }
   if (!partes.length) return '';
   return `<p class="servicos-contato">${partes.join('<br>')}</p>`;
@@ -151,15 +153,15 @@ function formatarDetalhesLocal(loc) {
   const c = loc.contatos || {};
   if (c.telefone) {
     const tel = c.telefone.replace(/[^\d+]/g, '');
-    partes.push(`📞 <a href="tel:${tel}">${escapeHtml(c.telefone)}</a>`);
+    partes.push(`${iconHtml('phone', 'ci ci--xs')} <a href="tel:${tel}">${escapeHtml(c.telefone)}</a>`);
   }
   if (c.email) {
-    partes.push(`✉️ <a href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a>`);
+    partes.push(`${iconHtml('mail', 'ci ci--xs')} <a href="mailto:${escapeHtml(c.email)}">${escapeHtml(c.email)}</a>`);
   }
   if (c.site) {
     const label = c.site.replace(/^https?:\/\//i, '').slice(0, 40);
     partes.push(
-      `🌐 <a href="${escapeHtml(c.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`
+      `${iconHtml('globe', 'ci ci--xs')} <a href="${escapeHtml(c.site)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>`
     );
   }
   return partes.join('<br>');
@@ -306,7 +308,7 @@ function atualizarOverlayMapa() {
   const texto = document.getElementById('mapa-overlay-cep');
   if (!overlay || !texto) return;
   if (enderecoAtual && cepAtual) {
-    texto.textContent = `📍 ${mascaraCep(cepAtual)} — ${enderecoAtual}`;
+    texto.textContent = `${mascaraCep(cepAtual)} — ${enderecoAtual}`;
     overlay.setAttribute('aria-hidden', 'false');
   } else {
     overlay.setAttribute('aria-hidden', 'true');
@@ -527,6 +529,7 @@ async function restaurarPagina() {
       );
     }
     atualizarExibicao();
+    initIcons();
     return;
   }
 
@@ -534,6 +537,7 @@ async function restaurarPagina() {
   setStatus(`Mapa aberto em ${MAPA_PADRAO.label}. Digite seu CEP e clique em Buscar.`);
   tipoAtivo = 'mapa';
   ativarChip('mapa');
+  initIcons();
 }
 
 function normalizarElementos(elements) {
@@ -657,7 +661,8 @@ function marcarRegiaoCep(lat, lon) {
     zIndexOffset: 1000,
   })
     .addTo(mapa)
-    .bindPopup(`<strong>📍 Você está aqui</strong><br>Busca em raio de ${RAIO_METROS / 1000} km`);
+    .bindPopup(`<strong>${iconHtml('map-pin', 'ci ci--xs')} Você está aqui</strong><br>Busca em raio de ${RAIO_METROS / 1000} km`)
+    .on('popupopen', () => initIcons());
 
   atualizarOverlayMapa();
 }
@@ -679,9 +684,10 @@ function renderizarMarcadores(locais) {
         ? `${Math.round(loc.distancia * 1000)} m`
         : `${loc.distancia.toFixed(1)} km`;
     marker.bindPopup(
-      `<strong>${cfg.emoji} ${escapeHtml(loc.nome)}</strong><br>${formatarDetalhesLocal(loc)}<br><em>${distTexto} de você</em>`
+      `<strong>${iconHtml(cfg.icon, 'ci ci--xs')} ${escapeHtml(loc.nome)}</strong><br>${formatarDetalhesLocal(loc)}<br><em>${distTexto} de você</em>`
     );
     marker.addTo(camadaMarcadores);
+    marker.on('popupopen', () => initIcons());
   });
 
   if (locais.length > 0) {
@@ -720,10 +726,10 @@ function renderizarLista(locais) {
           : `${loc.distancia.toFixed(1)} km`;
       return `
         <li class="servicos-item" data-tipo="${tipoAtivo}" data-lat="${loc.lat}" data-lon="${loc.lon}" tabindex="0" role="button">
-          <h3>${cfg.emoji} ${escapeHtml(loc.nome)}</h3>
+          <h3>${iconHtml(cfg.icon, 'ci ci--sm')}${escapeHtml(loc.nome)}</h3>
           ${loc.endereco ? `<p class="servicos-endereco">${escapeHtml(loc.endereco)}</p>` : '<p class="servicos-endereco servicos-endereco--vazio">Endereço não informado no mapa</p>'}
           ${formatarContatosHtml(loc.contatos || {})}
-          <span class="distancia">📏 ${dist} de distância</span>
+          <span class="distancia">${iconHtml('ruler', 'ci ci--xs')} ${dist} de distância</span>
         </li>
       `;
     })
@@ -749,6 +755,7 @@ function renderizarLista(locais) {
       }
     });
   });
+  initIcons();
 }
 
 function escapeHtml(texto) {
@@ -855,7 +862,7 @@ async function executarBusca() {
   }
 }
 
-export function initServicosMap() {
+export async function initServicosMap() {
   const mapaEl = document.getElementById('servicos-mapa');
   if (!mapaEl) return;
 
@@ -863,7 +870,7 @@ export function initServicosMap() {
   const btn = document.getElementById('cep-buscar');
   const chips = document.querySelectorAll('#servicos-chips .chip');
 
-  restaurarPagina();
+  await restaurarPagina();
 
   if (input) {
     input.addEventListener('input', () => {

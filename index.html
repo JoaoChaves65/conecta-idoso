@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/contrast.css">
   <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/icons.css">
   <link rel="stylesheet" href="assets/css/servicos.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
@@ -24,7 +25,7 @@
     <div class="nav-inner">
       <div class="nav-brand">
         <button type="button" class="logo" id="logo-btn" aria-label="Ir para o início">
-          <div class="logo-icon" aria-hidden="true">🤝</div>
+          <div class="logo-icon" aria-hidden="true"><i class="ci ci--md ci--verde" data-lucide="heart-handshake"></i></div>
           <div class="logo-info">
             <div class="logo-text">Conecta Idoso</div>
             <div class="logo-slogan">Tecnologia, direitos e acolhimento</div>
@@ -58,11 +59,11 @@
           <li><a href="#assistiva" data-nav="assistiva">Tecnologia Assistiva</a></li>
           <li><a href="#servicos" data-nav="servicos">Serviços</a></li>
           <li><a href="#ajuda" data-nav="ajuda">Preciso de Ajuda</a></li>
-          <li><a href="#emergencia" data-nav="emergencia" class="btn-emergencia-nav">🚨 Emergência</a></li>
+          <li><a href="#emergencia" data-nav="emergencia" class="btn-emergencia-nav"><i class="ci ci--sm ci--branco" data-lucide="siren"></i> Emergência</a></li>
         </ul>
 
         <button type="button" class="btn-emergencia-mobile" id="btn-emergencia-mobile" aria-label="Emergência">
-          🚨 <span class="btn-emerg-label">Emergência</span>
+          <i class="ci ci--sm ci--branco" data-lucide="siren"></i> <span class="btn-emerg-label">Emergência</span>
         </button>
 
         <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-drawer">
@@ -84,7 +85,7 @@
       <li><a href="#assistiva" data-nav="assistiva">Tecnologia Assistiva</a></li>
       <li><a href="#servicos" data-nav="servicos">Serviços</a></li>
       <li><a href="#ajuda" data-nav="ajuda">Preciso de Ajuda</a></li>
-      <li><a href="#emergencia" data-nav="emergencia" class="btn-emergencia-nav">🚨 Emergência</a></li>
+      <li><a href="#emergencia" data-nav="emergencia" class="btn-emergencia-nav"><i class="ci ci--sm ci--branco" data-lucide="siren"></i> Emergência</a></li>
     </ul>
   </div>
 
@@ -92,6 +93,7 @@
     <div class="page-loading">Carregando...</div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.487.0/dist/umd/lucide.min.js"></script>
   <script type="module" src="assets/js/app.js"></script>
 </body>
 </html>

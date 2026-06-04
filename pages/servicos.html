@@ -1,14 +1,14 @@
 <div class="header-pagina teal-grad">
-  <div class="badge">🗺️ Perto de você</div>
+  <div class="badge"><i class="ci ci--sm" data-lucide="map"></i> Perto de você</div>
   <h1>Serviços Próximos</h1>
   <p>Digite seu CEP e encontre os serviços mais próximos</p>
 </div>
 
 <div class="secao secao-servicos">
   <div class="cep-box">
-    <span class="cep-icone">📍</span>
+    <span class="cep-icone"><i class="ci ci--md ci--azul" data-lucide="map-pin"></i></span>
     <input type="text" placeholder="Digite seu CEP (ex: 64260-000)" maxlength="9" id="cep-input" inputmode="numeric" autocomplete="postal-code">
-    <button type="button" id="cep-buscar">🔍 Buscar</button>
+    <button type="button" id="cep-buscar"><i class="ci ci--sm" data-lucide="search"></i> Buscar</button>
   </div>
 
   <div class="servicos-status" id="servicos-status" role="status" aria-live="polite">
@@ -23,49 +23,49 @@
   </div>
 
   <div class="chips" id="servicos-chips">
-    <button type="button" class="chip ativo" data-tipo="mapa">🗺️ Ver mapa</button>
-    <button type="button" class="chip" data-tipo="hospital">🏥 Hospitais</button>
-    <button type="button" class="chip" data-tipo="farmacia">💊 Farmácias</button>
-    <button type="button" class="chip" data-tipo="cras">🏢 CRAS</button>
-    <button type="button" class="chip" data-tipo="creas">🏛️ CREAS</button>
-    <button type="button" class="chip" data-tipo="academia">🏃 Academia da Terceira Idade</button>
-    <button type="button" class="chip" data-tipo="convivencia">🤝 Centros de Convivência</button>
-    <button type="button" class="chip" data-tipo="dentista">🦷 Dentista</button>
+    <button type="button" class="chip ativo" data-tipo="mapa"><i class="ci ci--sm" data-lucide="map"></i> Ver mapa</button>
+    <button type="button" class="chip" data-tipo="hospital"><i class="ci ci--sm" data-lucide="hospital"></i> Hospitais</button>
+    <button type="button" class="chip" data-tipo="farmacia"><i class="ci ci--sm" data-lucide="pill"></i> Farmácias</button>
+    <button type="button" class="chip" data-tipo="cras"><i class="ci ci--sm" data-lucide="building-2"></i> CRAS</button>
+    <button type="button" class="chip" data-tipo="creas"><i class="ci ci--sm" data-lucide="landmark"></i> CREAS</button>
+    <button type="button" class="chip" data-tipo="academia"><i class="ci ci--sm" data-lucide="dumbbell"></i> Academia da Terceira Idade</button>
+    <button type="button" class="chip" data-tipo="convivencia"><i class="ci ci--sm" data-lucide="heart-handshake"></i> Centros de Convivência</button>
+    <button type="button" class="chip" data-tipo="dentista"><i class="ci ci--sm" data-lucide="smile"></i> Dentista</button>
   </div>
 
   <div class="servicos-resultados" id="servicos-resultados" hidden>
-    <h2 class="servicos-resultados-titulo">📍 Locais encontrados</h2>
+    <h2 class="servicos-resultados-titulo"><i class="ci ci--sm" data-lucide="map-pin"></i> Locais encontrados</h2>
     <p class="servicos-local" id="servicos-local"></p>
     <ul class="servicos-lista" id="servicos-lista"></ul>
   </div>
 
   <div class="info-box info-box--azul servicos-aviso">
-    <h3>ℹ️ Sobre CRAS e CREAS</h3>
+    <h3><i class="ci ci--sm" data-lucide="info"></i> Sobre CRAS e CREAS</h3>
     <p>Alguns centros podem não aparecer no mapa. Se não encontrar, ligue <strong>156</strong> (Central de Atendimento) ou procure o CRAS da sua cidade na prefeitura.</p>
   </div>
 
-  <h2 class="secao-servicos-titulo">📋 Serviços Importantes</h2>
+  <h2 class="secao-servicos-titulo"><i class="ci ci--sm" data-lucide="clipboard-list"></i> Serviços Importantes</h2>
   <div class="cards-grid">
     <div class="card azul">
-      <div class="card-icone">🏢</div>
+      <div class="card-icone"><i class="ci ci--lg ci--azul" data-lucide="building-2"></i></div>
       <h3>CRAS — Centro de Referência de Assistência Social</h3>
       <p>Cadastro no BPC/LOAS, Bolsa Família e outros benefícios. Atendimento gratuito e prioritário para idosos.</p>
       <span class="tag azul">Gratuito</span>
     </div>
     <div class="card laranja">
-      <div class="card-icone">🏛️</div>
+      <div class="card-icone"><i class="ci ci--lg ci--laranja" data-lucide="landmark"></i></div>
       <h3>CREAS — Centro de Referência Especializado</h3>
       <p>Atendimento a casos de violência, maus-tratos e abandono. Oferece apoio psicossocial gratuito.</p>
       <span class="tag laranja">Proteção</span>
     </div>
     <div class="card">
-      <div class="card-icone">🏃</div>
+      <div class="card-icone"><i class="ci ci--lg ci--verde" data-lucide="dumbbell"></i></div>
       <h3>Academia da Terceira Idade</h3>
       <p>Exercícios físicos ao ar livre com equipamentos adaptados para idosos. Gratuito nos parques municipais.</p>
       <span class="tag">Saúde</span>
     </div>
     <div class="card roxo">
-      <div class="card-icone">🤝</div>
+      <div class="card-icone"><i class="ci ci--lg ci--roxo" data-lucide="heart-handshake"></i></div>
       <h3>Centros de Convivência</h3>
       <p>Atividades sociais, artesanato, dança, jogos e amizades. Combate a solidão e promove bem-estar.</p>
       <span class="tag roxo">Social</span>

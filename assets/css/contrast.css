@@ -229,3 +229,36 @@ body.alto-contraste .btn-voltar {
 body.alto-contraste .nav-overlay {
   background: rgba(0, 0, 0, 0.85) !important;
 }
+
+/* Lucide — legível no alto contraste */
+body.alto-contraste .ci svg {
+  stroke-width: 2.25;
+}
+
+body.alto-contraste .ci:not(.ci--branco):not(.hero-titulo .ci) {
+  color: #ff0;
+}
+
+/* Ícones sobre fundo amarelo — contraste legível */
+body.alto-contraste .chip.ativo .ci,
+body.alto-contraste .chip:hover .ci,
+body.alto-contraste .cep-box button .ci,
+body.alto-contraste .btn-enviar .ci,
+body.alto-contraste .header-pagina .badge .ci,
+body.alto-contraste .nav-links a:hover .ci,
+body.alto-contraste .nav-links a.ativo .ci {
+  color: #000 !important;
+}
+
+body.alto-contraste .hero-titulo .ci,
+body.alto-contraste .ci--branco {
+  color: #fff;
+}
+
+body.alto-contraste .logo-icon .ci {
+  color: var(--verde);
+}
+
+body.alto-contraste .servicos-contato a {
+  color: #ff0 !important;
+}

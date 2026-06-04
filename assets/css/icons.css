@@ -1,0 +1,121 @@
+/* Conecta Icon — Lucide SVG */
+.ci,
+.ci svg {
+  display: inline-block;
+  vertical-align: middle;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.ci svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ci--xs { width: 16px; height: 16px; }
+.ci--sm { width: 20px; height: 20px; min-width: 20px; min-height: 20px; }
+.ci--md { width: 28px; height: 28px; }
+.ci--lg { width: clamp(2.2rem, 6vw, 3rem); height: clamp(2.2rem, 6vw, 3rem); }
+.ci--xl { width: clamp(2.75rem, 8vw, 3.5rem); height: clamp(2.75rem, 8vw, 3.5rem); }
+.ci--hero { width: clamp(2rem, 5vw, 2.75rem); height: clamp(2rem, 5vw, 2.75rem); }
+
+.ci--verde { color: var(--verde); }
+.ci--azul { color: var(--azul); }
+.ci--laranja { color: var(--laranja); }
+.ci--roxo { color: var(--roxo); }
+.ci--ciano { color: var(--azul-claro); }
+.ci--verde-claro { color: #43A047; }
+.ci--vermelho { color: var(--vermelho); }
+.ci--branco { color: #fff; }
+.ci--preto { color: var(--preto); }
+
+.ci--inline { margin-right: 0.35em; }
+
+.logo-icon .ci {
+  width: 28px;
+  height: 28px;
+  color: var(--verde);
+}
+
+.btn-rapido .icone,
+.card-icone,
+.direito-item .icone,
+.emergencia-card .icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge .ci {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.35em;
+  vertical-align: -0.15em;
+}
+
+.chip .ci {
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.3em;
+  vertical-align: -0.2em;
+}
+
+.cep-box .ci {
+  width: 1.35em;
+  height: 1.35em;
+  flex-shrink: 0;
+}
+
+.emergencia-header .icone-grande {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emergencia-header .icone-grande .ci {
+  width: clamp(3rem, 10vw, 4rem);
+  height: clamp(3rem, 10vw, 4rem);
+  color: var(--vermelho);
+}
+
+.btn-emergencia-nav .ci,
+.btn-emergencia-mobile .ci {
+  width: 1.15em;
+  height: 1.15em;
+  margin-right: 0.25em;
+  vertical-align: -0.15em;
+}
+
+.hero-titulo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.hero-titulo .ci {
+  width: clamp(2rem, 5vw, 2.75rem);
+  height: clamp(2rem, 5vw, 2.75rem);
+  color: #fff;
+}
+
+.servicos-item h3 {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.servicos-item h3 .ci {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+}
+
+.contato .ci,
+.alerta .ci,
+h2 .ci,
+h3 .ci {
+  margin-right: 0.35em;
+  vertical-align: -0.15em;
+}

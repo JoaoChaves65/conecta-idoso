@@ -1,5 +1,6 @@
 import { initContraste } from './contrast.js';
 import { initFonte } from './font-size.js';
+import { initIcons } from './icons.js';
 import { initPageHandlers } from './ui.js';
 import { initServicosMap, destroyServicosMap } from './servicos-map.js';
 
@@ -68,7 +69,8 @@ async function carregarPagina(id) {
   }
 
   initPageHandlers();
-  if (id === 'servicos') initServicosMap();
+  initIcons();
+  if (id === 'servicos') await initServicosMap();
 }
 
 export async function ir(id) {
@@ -115,6 +117,7 @@ export function initApp() {
   initContraste();
   initFonte();
   initNav();
+  initIcons();
   ir(paginaInicial());
 }
 
