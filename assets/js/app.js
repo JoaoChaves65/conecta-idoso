@@ -3,6 +3,7 @@ import { initFonte } from './font-size.js';
 import { initIcons } from './icons.js';
 import { initPageHandlers } from './ui.js';
 import { initServicosMap, destroyServicosMap } from './servicos-map.js';
+import { initFamiliares } from './familiares.js';
 
 const PAGES = ['home', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
 
@@ -71,6 +72,7 @@ async function carregarPagina(id) {
   initPageHandlers();
   initIcons();
   if (id === 'servicos') await initServicosMap();
+  if (id === 'emergencia') initFamiliares();
 }
 
 export async function ir(id) {

@@ -4,7 +4,8 @@
  * hospital, pill, building-2, landmark, smile, map-pin, search, phone, mail,
  * globe, ruler, info, ambulance, shield, flame, scroll-text, wallet, bus,
  * home, graduation-cap, church, pill-bottle, volume-2, mic, stethoscope,
- * activity, file-text, clipboard-list, map-pinned, navigation
+ * activity, file-text, clipboard-list, map-pinned, navigation,
+ * message-circle, user-plus, trash-2, pencil
  */
 
 export function iconHtml(name, classes = 'ci ci--sm') {

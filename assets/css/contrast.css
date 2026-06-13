@@ -262,3 +262,72 @@ body.alto-contraste .logo-icon .ci {
 body.alto-contraste .servicos-contato a {
   color: #ff0 !important;
 }
+
+body.alto-contraste .familiares-card {
+  background: #000 !important;
+  border: 3px solid #fff !important;
+  color: #fff !important;
+}
+
+body.alto-contraste .familiares-card-nome {
+  color: #fff !important;
+}
+
+body.alto-contraste .familiares-card-tel {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .familiares-card--ativo {
+  border-color: #ff0 !important;
+  background: #111 !important;
+  box-shadow: 0 0 0 3px #ff0 !important;
+}
+
+body.alto-contraste .familiares-card:hover,
+body.alto-contraste .familiares-card:focus-visible {
+  border-color: #ff0 !important;
+}
+
+body.alto-contraste .btn-familiar-acao--ligar {
+  background: #f00 !important;
+  border: 3px solid #fff !important;
+  color: #fff !important;
+}
+
+body.alto-contraste .btn-familiar-acao--whatsapp {
+  background: #128C7E !important;
+  border: 3px solid #fff !important;
+  color: #fff !important;
+}
+
+body.alto-contraste .familiares-details summary {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .familiares-cadastro-item {
+  background: #000 !important;
+  border: 2px solid #fff !important;
+}
+
+body.alto-contraste .familiares-cadastro-info strong {
+  color: #fff !important;
+}
+
+body.alto-contraste .familiares-cadastro-info span {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .btn-familiar-mini {
+  background: #000 !important;
+  border: 2px solid #ff0 !important;
+  color: #ff0 !important;
+}
+
+body.alto-contraste .familiares-hint,
+body.alto-contraste .familiares-vazio-hint {
+  color: #fff !important;
+}
+
+body.alto-contraste .familiares-form-erro {
+  color: #ff0 !important;
+}

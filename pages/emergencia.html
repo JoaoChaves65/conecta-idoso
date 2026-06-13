@@ -37,18 +37,42 @@
     </div>
   </a>
 
-  <div class="info-box info-box--vermelho">
-    <h3><i class="ci ci--sm" data-lucide="home"></i> Avisar Familiar Cadastrado</h3>
-    <div class="campo">
-      <label for="fam-nome">Nome do familiar</label>
-      <input type="text" id="fam-nome" placeholder="Nome do familiar ou cuidador">
-    </div>
-    <button type="button" class="btn-enviar btn-enviar--vermelho"><i class="ci ci--sm" data-lucide="smartphone"></i> Enviar alerta para o familiar</button>
+  <div class="info-box info-box--vermelho familiares-box" id="familiares-box">
+    <h3><i class="ci ci--sm" data-lucide="home" aria-hidden="true"></i> Avisar Familiar Cadastrado</h3>
+    <p class="familiares-vazio-hint" id="fam-vazio-hint">Cadastre um familiar para avisar com um toque.</p>
+
+    <div id="fam-acoes" class="familiares-acoes-wrap" aria-live="polite"></div>
+
+    <div class="familiares-lista" id="fam-lista-selecao" role="listbox" aria-label="Selecione um familiar"></div>
+
+    <details class="familiares-details" id="fam-details">
+      <summary>Cadastrar ou editar familiares</summary>
+      <div class="familiares-cadastro">
+        <form id="fam-form" novalidate>
+          <div class="campo">
+            <label for="fam-cad-nome">Nome do familiar</label>
+            <input type="text" id="fam-cad-nome" placeholder="Nome do familiar ou cuidador" autocomplete="name" maxlength="80">
+          </div>
+          <div class="campo">
+            <label for="fam-cad-tel">Telefone (celular)</label>
+            <input type="tel" id="fam-cad-tel" placeholder="(86) 99999-9999" inputmode="numeric" autocomplete="tel">
+          </div>
+          <p class="familiares-form-erro" id="fam-form-erro" role="alert" hidden></p>
+          <div class="familiares-form-btns">
+            <button type="submit" class="btn-enviar btn-enviar--vermelho" id="fam-btn-salvar">
+              <i class="ci ci--sm" data-lucide="user-plus" aria-hidden="true"></i> Adicionar familiar
+            </button>
+            <button type="button" class="btn-voltar familiares-btn-cancelar" id="fam-btn-cancelar" hidden>Cancelar</button>
+          </div>
+        </form>
+        <div class="familiares-lista-cadastro" id="fam-lista-cadastro" aria-live="polite"></div>
+      </div>
+    </details>
   </div>
 
   <div class="centro" style="margin-top:1.5rem;">
     <button type="button" class="btn-voltar" onclick="ir('home')">
-      <i class="ci ci--sm" data-lucide="arrow-left"></i> Voltar para o início
+      <i class="ci ci--sm" data-lucide="arrow-left" aria-hidden="true"></i> Voltar para o início
     </button>
   </div>
 </div>
