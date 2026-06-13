@@ -331,3 +331,43 @@ body.alto-contraste .familiares-vazio-hint {
 body.alto-contraste .familiares-form-erro {
   color: #ff0 !important;
 }
+
+/* Vídeos — Histórias */
+body.alto-contraste .video-card {
+  background: #000 !important;
+  border: 3px solid #fff !important;
+  border-left: 6px solid #ff0 !important;
+  box-shadow: none !important;
+}
+
+body.alto-contraste .video-card-titulo {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .video-card-desc,
+body.alto-contraste .videos-vazio {
+  color: #fff !important;
+}
+
+body.alto-contraste .secao-historias h2 {
+  color: #ff0 !important;
+}
+
+body.alto-contraste .secao-historias .subtitulo {
+  color: #fff !important;
+}
+
+body.alto-contraste .btn-historias {
+  background: #000 !important;
+  color: #fff !important;
+  border: 3px solid #ff0 !important;
+  box-shadow: none !important;
+}
+
+body.alto-contraste .btn-historias .ci {
+  color: #fff !important;
+}
+
+body.alto-contraste .video-player video {
+  border: 2px solid #fff;
+}

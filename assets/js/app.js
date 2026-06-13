@@ -4,8 +4,9 @@ import { initIcons } from './icons.js';
 import { initPageHandlers } from './ui.js';
 import { initServicosMap, destroyServicosMap } from './servicos-map.js';
 import { initFamiliares } from './familiares.js';
+import { initVideos } from './videos.js';
 
-const PAGES = ['home', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
+const PAGES = ['home', 'historias', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
 
 let menuAberto = false;
 
@@ -73,6 +74,7 @@ async function carregarPagina(id) {
   initIcons();
   if (id === 'servicos') await initServicosMap();
   if (id === 'emergencia') initFamiliares();
+  if (id === 'historias' || id === 'home') initVideos();
 }
 
 export async function ir(id) {

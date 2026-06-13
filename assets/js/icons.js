@@ -5,7 +5,7 @@
  * globe, ruler, info, ambulance, shield, flame, scroll-text, wallet, bus,
  * home, graduation-cap, church, pill-bottle, volume-2, mic, stethoscope,
  * activity, file-text, clipboard-list, map-pinned, navigation,
- * message-circle, user-plus, trash-2, pencil
+ * message-circle, user-plus, trash-2, pencil, video, mic
  */
 
 export function iconHtml(name, classes = 'ci ci--sm') {
