@@ -17,7 +17,7 @@ export function initIcons() {
   if (typeof window.lucide?.createIcons !== 'function') return;
   try {
     window.lucide.createIcons({ attrs: { 'stroke-width': '2' }, nameAttr: 'data-lucide' });
-  } catch {
-    /* CDN indisponível — texto permanece legível */
+  } catch (err) {
+    console.warn('[ConectaIdoso] Ícones indisponíveis:', err);
   }
 }

@@ -1,4 +1,5 @@
 import { iconHtml, initIcons } from './icons.js';
+import { escapeHtmlDom as escapeHtml } from './utils.js';
 
 const RAIO_METROS = 5000;
 const OVERPASS_TIMEOUT_MS = 28000;
@@ -249,7 +250,8 @@ function lerCacheDiario(cep) {
     const data = JSON.parse(raw);
     if (data.dia !== new Date().toISOString().slice(0, 10)) return null;
     return data;
-  } catch {
+  } catch (err) {
+    console.warn('[ConectaIdoso] Cache OSM corrompido:', err);
     return null;
   }
 }
@@ -261,8 +263,8 @@ function gravarCacheDiarioTipo(cep, tipo, items) {
     const atual = lerCacheDiario(cep) || { dia, tipos: {} };
     atual.tipos[tipo] = items;
     localStorage.setItem(key, JSON.stringify(atual));
-  } catch {
-    /* quota cheia */
+  } catch (err) {
+    console.warn('[ConectaIdoso] Não foi possível gravar cache OSM (quota?)', err);
   }
 }
 
@@ -281,7 +283,8 @@ function lerPerfilCep() {
     const p = JSON.parse(raw);
     if (!p?.cep || p.lat == null || p.lon == null) return null;
     return p;
-  } catch {
+  } catch (err) {
+    console.warn('[ConectaIdoso] Perfil CEP corrompido:', err);
     return null;
   }
 }
@@ -298,8 +301,8 @@ function gravarPerfilCep(cep, endereco, lat, lon) {
         salvoEm: new Date().toISOString(),
       })
     );
-  } catch {
-    /* ignora */
+  } catch (err) {
+    console.warn('[ConectaIdoso] Não foi possível salvar perfil CEP (quota?)', err);
   }
 }
 
@@ -495,7 +498,8 @@ function prefetchEmSegundoPlano(lat, lon, cep, tipoInicial) {
       if (tipo === tipoInicial || cachePorTipo[tipo] || lerCacheDiario(cep)?.tipos?.[tipo]) continue;
       try {
         await buscarTipoOsm(lat, lon, tipo, cep);
-      } catch {
+      } catch (err) {
+        console.warn('[ConectaIdoso] Prefetch interrompido:', err.message);
         break;
       }
     }
@@ -756,12 +760,6 @@ function renderizarLista(locais) {
     });
   });
   initIcons();
-}
-
-function escapeHtml(texto) {
-  const d = document.createElement('div');
-  d.textContent = texto;
-  return d.innerHTML;
 }
 
 function ativarChip(tipo) {

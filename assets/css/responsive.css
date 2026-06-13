@@ -314,10 +314,6 @@
     transform: translateY(-4px);
   }
 
-  .tutorial-card:hover {
-    transform: translateY(-3px);
-  }
-
   .emergencia-link:hover .emergencia-card {
     transform: scale(1.02);
   }
@@ -325,7 +321,6 @@
 
 @media (hover: none) {
   .btn-rapido:hover,
-  .tutorial-card:hover,
   .emergencia-link:hover .emergencia-card {
     transform: none;
   }

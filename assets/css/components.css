@@ -231,12 +231,8 @@
   padding: 1.5rem;
   box-shadow: var(--sombra);
   text-align: center;
-  cursor: pointer;
-  transition: transform 0.18s;
   border-top: 5px solid var(--azul-claro);
 }
-
-.tutorial-card:hover { transform: translateY(-3px); }
 
 .tutorial-card .play {
   margin-bottom: 0.8rem;

@@ -1,4 +1,5 @@
 import { initIcons } from './icons.js';
+import { escapeHtml } from './utils.js';
 
 const LS_KEY = 'conecta-familiares-v1';
 const MSG_WHATSAPP =
@@ -51,7 +52,8 @@ export function lerFamiliares() {
     const data = JSON.parse(raw);
     if (!Array.isArray(data?.contatos)) return [];
     return data.contatos.filter(c => c?.id && c?.nome && c?.telefone);
-  } catch {
+  } catch (err) {
+    console.warn('[ConectaIdoso] Dados familiares corrompidos:', err);
     return [];
   }
 }
@@ -59,8 +61,8 @@ export function lerFamiliares() {
 function gravarFamiliares(contatos) {
   try {
     localStorage.setItem(LS_KEY, JSON.stringify({ version: 1, contatos }));
-  } catch {
-    /* quota cheia */
+  } catch (err) {
+    console.warn('[ConectaIdoso] Não foi possível salvar familiares (quota?)', err);
   }
 }
 
@@ -71,14 +73,6 @@ export function montarUrlTel(telefone) {
 export function montarUrlWhatsApp(telefone) {
   const num = soDigitos(telefone);
   return `https://wa.me/55${num}?text=${encodeURIComponent(MSG_WHATSAPP)}`;
-}
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 function setFormErro(msg) {

@@ -1,4 +1,5 @@
 import { initIcons } from './icons.js';
+import { escapeHtml } from './utils.js';
 
 export const VIDEOS = [
   {
@@ -9,14 +10,6 @@ export const VIDEOS = [
     destaque: true,
   },
 ];
-
-function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
 
 export function getVideoDestaque() {
   return VIDEOS.find(v => v.destaque) || VIDEOS[0] || null;

@@ -8,7 +8,24 @@ import { initVideos } from './videos.js';
 
 const PAGES = ['home', 'historias', 'direitos', 'digital', 'assistiva', 'servicos', 'ajuda', 'voluntarios', 'emergencia'];
 
+const PAGE_TITLES = {
+  home: 'Início',
+  historias: 'Histórias Reais',
+  direitos: 'Meus Direitos',
+  digital: 'Inclusão Digital',
+  assistiva: 'Tecnologia Assistiva',
+  servicos: 'Serviços Próximos',
+  ajuda: 'Preciso de Ajuda',
+  voluntarios: 'Rede de Voluntários',
+  emergencia: 'Emergência',
+};
+
 let menuAberto = false;
+let paginaAtual = null;
+
+function atualizarTitulo(id) {
+  document.title = `${PAGE_TITLES[id] || 'Conecta Idoso'} — Conecta Idoso`;
+}
 
 function getDrawer() {
   return document.getElementById('nav-drawer');
@@ -65,7 +82,8 @@ async function carregarPagina(id) {
     const res = await fetch(`pages/${id}.html`);
     if (!res.ok) throw new Error('Página não encontrada');
     main.innerHTML = await res.text();
-  } catch {
+  } catch (err) {
+    console.error('[ConectaIdoso] Falha ao carregar página:', id, err);
     main.innerHTML = '<div class="page-loading">Erro ao carregar a página. Tente novamente.</div>';
     return;
   }
@@ -84,7 +102,13 @@ export async function ir(id) {
   atualizarNav(id);
   fecharMenuMobile();
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  history.replaceState({ page: id }, '', `#${id}`);
+  if (paginaAtual === null) {
+    history.replaceState({ page: id }, '', `#${id}`);
+  } else if (id !== paginaAtual) {
+    history.pushState({ page: id }, '', `#${id}`);
+  }
+  paginaAtual = id;
+  atualizarTitulo(id);
 }
 
 function initNav() {
@@ -107,7 +131,11 @@ function initNav() {
   window.addEventListener('popstate', e => {
     const id = e.state?.page || location.hash.slice(1) || 'home';
     if (PAGES.includes(id)) {
-      carregarPagina(id).then(() => atualizarNav(id));
+      paginaAtual = id;
+      carregarPagina(id).then(() => {
+        atualizarNav(id);
+        atualizarTitulo(id);
+      });
     }
   });
 }
