@@ -1,3 +1,5 @@
+import { atualizarFavicon } from './favicon.js';
+
 const STORAGE_KEY = 'conecta-contraste';
 
 function getToggle() {
@@ -9,6 +11,7 @@ export function aplicarContraste(ativo) {
   const toggle = getToggle();
   if (toggle) toggle.checked = ativo;
   localStorage.setItem(STORAGE_KEY, ativo ? 'alto' : 'normal');
+  atualizarFavicon(ativo);
 }
 
 export function initContraste() {
